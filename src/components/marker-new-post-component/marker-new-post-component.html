@@ -1,4 +1,8 @@
-<!-- Generated template for the MarkerNewPostComponent component -->
-<div>
-  {{text}}
+<div *ngIf="user" class="new-post-marker">
+  <div class="new-post-main">
+    <app-user-tag ID="{{user.ID}}" ImageURL="{{user.ImageURL}}" Name="{{user.DisplayName}}" PostDate=""></app-user-tag>
+    <textarea name="a" id="" placeholder="Post Something..." (click)="redirecttoNewPost()"></textarea>
+    
+  </div>
+
 </div>

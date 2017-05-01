@@ -20,6 +20,7 @@ import {MarkerNewPostComponent} from '../components/marker-new-post-component/ma
 import {UserCommentsComponent} from '../components/user-comments-component/user-comments-component';
 import {UserPostActionComponent} from '../components/user-post-action-component/user-post-action-component';
 import {UserPostsComponent} from '../components/user-posts-component/user-posts-component';
+import {UserTagComponent} from '../components/user-tag-component/user-tag-component';
 
 
 import {UserSearchComponent} from '../pages/user-search-component/user-search-component';
@@ -40,7 +41,8 @@ import {UserSearchItemComponent} from '../components/user-search-item-component/
     MarkerNewPostComponent,
     UserCommentsComponent,
     UserPostActionComponent,
-    UserPostsComponent
+    UserPostsComponent,
+    UserTagComponent
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,32 @@
-<!-- Generated template for the UserCommentsComponent component -->
-<div>
-  {{text}}
+<div class="comments">
+  <div class="close-button"><button class="btn btn-link fa fa-times" (click)="closeModal()"></button></div>
+  <div class="col-lg-6">
+    <div class="input-group post-comment">
+      <input type="text" class="form-control" placeholder="What's on your mind!..." [(ngModel)]="commentPost">
+      <span class="input-group-btn">
+        <button class="btn btn-primary" type="button" (click)="postComment()">Post</button>
+      </span>
+    </div>
+  </div>
+
+
+  <ul class="media-list">
+    <li class="media media-end-border" *ngFor="let comment of comments">
+      <div class="media-left">
+        <a href="#"><img class="media-object" src="{{comment.user.imageURL}}" alt="..."></a>
+      </div>
+      <div class="media-body">
+        <p>
+          <strong>{{comment.user.diplayName}}</strong> {{comment.comment}}
+        </p>
+        <ul class="comments_reply">
+          <li><button type="button" class="btn btn-link" (click)="setLike(comment.storyID, comment.id)"> {{comment.actions.supportCount}} Like</button>
+
+            <li><a href="#">Reply</a></li>
+            <li><a href="#">{{comment.timestamp | date:'medium'}}</a></li>
+        </ul>
+        <!-- Reply Element was here -->
+      </div>
+      </li>
+  </ul>
 </div>

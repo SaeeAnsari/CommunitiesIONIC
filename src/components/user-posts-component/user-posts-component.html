@@ -1,4 +1,6 @@
-<!-- Generated template for the UserPostsComponent component -->
-<div>
-  {{text}}
+<div class="feed_post_content">
+  <div class="feed_post_message">{{PostMessage}}</div>
+  <div *ngIf="PostMediaURL">
+    <img src="{{PostMediaURL}}" (click)="openMessages()">
+  </div>
 </div>

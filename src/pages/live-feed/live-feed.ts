@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
+import { UserPost } from '../../interfaces/user-post';
+import { StoryService } from '../../providers/story-service';
+import { CommunityService } from '../../providers/community-service';
+import { UserService } from '../../providers/user-service';
+
 
 
 
@@ -14,10 +19,75 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 @Component({
   selector: 'page-live-feed',
   templateUrl: 'live-feed.html',
+  providers: [StoryService, CommunityService, UserService]
 })
-export class LiveFeed {
+export class LiveFeed implements OnInit {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  private userID: number;
+  private posts: UserPost[] = [];
+  private subscription;
+  private communityID: number = 0;
+  private pageIndex: number = 0;
+  private communityName: string = "";
+
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private _storyService: StoryService,
+    private _communityService: CommunityService,
+    private _userService: UserService) {
+
+    if (this.navParams.get('communityID')) {
+      this.communityID = this.navParams.get('communityID');
+      this.getCommunityDetails();
+      this.loadStories();
+    }
+    else {
+      this._userService.getLoggedinInUser().subscribe(sub => {
+
+        this.communityID = sub.DefaultCommunityID
+        this.getCommunityDetails();
+        this.loadStories();
+      });
+    }
+
+  }
+
+
+  getCommunityDetails() {
+    this._communityService.GetCommunity(this.communityID)
+      .subscribe(sub => {
+        this.communityName = sub.Name;
+      })
+  }
+
+  loadStories() {
+    this.posts = [];
+    this._storyService.GetStoriesByCommunity(this.communityID, this.pageIndex)
+      .subscribe(postS => {
+
+        postS.forEach(element => {
+
+          this.posts.push({
+            storyID: element.ID,
+            title: element.Title,
+            text: element.LongDescription,
+            imageURL: element.ImageURL,
+            likeCount: element.ActionSummary.SupportCount,
+            dislikeCount: element.ActionSummary.DisagreeCount,
+            commentsCount: element.ActionSummary.CommentCount,
+            totalViews: element.ActionSummary.ViewCount,
+            userID: element.StoryUser.ID,
+            postDate: element.Timestamp,
+            userProfileImage: element.StoryUser.ImageURL,
+            userFullName: element.StoryUser.DisplayName
+          });
+        });
+      });
+  }
+
+  ngOnInit() {
+
   }
 
   ionViewDidLoad() {

@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import {UserService} from '../../providers/user-service';
+
 
 /**
  * Generated class for the MarkerNewPostComponent component.
@@ -7,16 +9,31 @@ import { Component } from '@angular/core';
  * for more info on Angular Components.
  */
 @Component({
-  selector: 'marker-new-post-component',
-  templateUrl: 'marker-new-post-component.html'
+  selector: 'app-marker-new-post',
+  templateUrl: 'marker-new-post-component.html',
+  providers: [UserService]
 })
-export class MarkerNewPostComponent {
+export class MarkerNewPostComponent implements OnInit{
 
-  text: string;
+private user;
+  constructor(private _userService: UserService) { }
 
-  constructor() {
-    console.log('Hello MarkerNewPostComponent Component');
-    this.text = 'Hello World';
+  ngOnInit() {    
+    this.loadNewPostMarker();
+  }
+
+  loadNewPostMarker(){
+     this._userService.getLoggedinInUser().subscribe(s => {
+
+       this.user = s;
+     
+    });
+  }
+
+  redirecttoNewPost(){   
+
+    //this._router.navigate(["/NewPost"]);
+
   }
 
 }
