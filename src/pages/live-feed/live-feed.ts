@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 
 import { UserPost } from '../../interfaces/user-post';
 import { StoryService } from '../../providers/story-service';
 import { CommunityService } from '../../providers/community-service';
 import { UserService } from '../../providers/user-service';
+
 
 
 
@@ -35,7 +36,8 @@ export class LiveFeed implements OnInit {
     public navParams: NavParams,
     private _storyService: StoryService,
     private _communityService: CommunityService,
-    private _userService: UserService) {
+    private _userService: UserService,
+    public modalCtrl: ModalController) {
 
     if (this.navParams.get('communityID')) {
       this.communityID = this.navParams.get('communityID');
@@ -93,5 +95,8 @@ export class LiveFeed implements OnInit {
   ionViewDidLoad() {
     console.log('ionViewDidLoad LiveFeed');
   }
+
+  
+
 
 }

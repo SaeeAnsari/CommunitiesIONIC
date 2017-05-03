@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { UserCommentsComponent } from '../user-comments-component/user-comments-component';
+
+import { ModalController, NavParams } from 'ionic-angular';
 /**
  * Generated class for the UserPostsComponent component.
  *
@@ -16,20 +18,27 @@ export class UserPostsComponent implements OnInit {
   @Input() PostMediaURL: string;
   @Input() StoryID: number;
 
-  constructor() { }
+  constructor(public modalCtrl: ModalController) { }
 
   ngOnInit() {
-    
+
   }
 
-  openMessages(){
-    
-    alert('broke this as we need  to IONIZe it');
+  openComments() {
+
+    let commentsModal = this.modalCtrl.create(UserCommentsComponent, { storyID: this.StoryID }, {showBackdrop: true, enableBackdropDismiss: true} );
+
+    commentsModal.onDidDismiss(data => {
+     console.log(data);
+   });
+    commentsModal.present();
+
+//alert('broke this as we need  to IONIZe it');
     /*
     const modalRef = this._modalService.open(UserCommentsComponent, { windowClass: 'dark-modal' } );   
     modalRef.componentInstance.storyID = this.StoryID;
     modalRef.componentInstance.loadComments();
-    */      
+    */
   }
 
 }

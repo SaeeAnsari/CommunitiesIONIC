@@ -27,6 +27,7 @@ import {UserSearchComponent} from '../pages/user-search-component/user-search-co
 import {UserSearchItemComponent} from '../components/user-search-item-component/user-search-item-component';
 
 
+
 @NgModule({
   declarations: [
     MyApp,
@@ -58,7 +59,8 @@ import {UserSearchItemComponent} from '../components/user-search-item-component/
     TabsPage,
     Community,
     UserSearchComponent,
-    LiveFeed
+    LiveFeed,
+    UserCommentsComponent
   ],
   providers: [
     StatusBar,

@@ -1,7 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {CommentService} from '../../providers/comment-service';
-import {UserService} from '../../providers/user-service';
-import {StoryService} from '../../providers/story-service';
+import { CommentService } from '../../providers/comment-service';
+import { UserService } from '../../providers/user-service';
+import { StoryService } from '../../providers/story-service';
+
+import { ViewController, NavParams, NavController } from 'ionic-angular';
 
 
 /**
@@ -19,9 +21,20 @@ export class UserCommentsComponent {
 
   private commentPost: string;
   private comments = [];
+
+
   @Input() storyID: number;
 
-  constructor(private _commentService: CommentService, private _userService: UserService, private _storyService: StoryService) { }
+  constructor(private _commentService: CommentService, private _userService: UserService, private _storyService: StoryService,
+    public nav: NavController,
+    public vc: ViewController,
+    public navParams: NavParams) {
+
+    if (this.navParams.get('storyID')) {
+      this.storyID = this.navParams.get('storyID');
+      this.loadComments();
+    }
+  }
 
   loadComments() {
     this.comments = [];
@@ -48,6 +61,14 @@ export class UserCommentsComponent {
     }
   }
 
+  closeModal() {
+    let data = {
+      storyID: this.storyID,
+      commentsCount: this.comments.length
+    };
+    this.vc.dismiss(data);
+  }
+
   setLike(storyID: number, commentID: number) {
 
     this._userService.getLoggedinInUser().subscribe(s => {
@@ -58,8 +79,8 @@ export class UserCommentsComponent {
         if (sub != undefined && sub == true) {
 
           this.comments.forEach(function (element, index) {
-            if(element.id == commentID){
-              elemIndex = index; 
+            if (element.id == commentID) {
+              elemIndex = index;
             }
           });
 
@@ -80,13 +101,10 @@ export class UserCommentsComponent {
 
           this.loadComments();
         });
-
       });
     }
   }
 
-  closeModal(){
-    alert('still not working, TODO - Fix later!');
-  }
+
 
 }
