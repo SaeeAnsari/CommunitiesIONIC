@@ -25,6 +25,7 @@ import {UserTagComponent} from '../components/user-tag-component/user-tag-compon
 
 import {UserSearchComponent} from '../pages/user-search-component/user-search-component';
 import {UserSearchItemComponent} from '../components/user-search-item-component/user-search-item-component';
+import {NewCommentComponent} from '../components/new-comment-component/new-comment-component';
 
 
 
@@ -43,7 +44,8 @@ import {UserSearchItemComponent} from '../components/user-search-item-component/
     UserCommentsComponent,
     UserPostActionComponent,
     UserPostsComponent,
-    UserTagComponent
+    UserTagComponent,
+    NewCommentComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +62,8 @@ import {UserSearchItemComponent} from '../components/user-search-item-component/
     Community,
     UserSearchComponent,
     LiveFeed,
-    UserCommentsComponent
+    UserCommentsComponent,
+    NewCommentComponent
   ],
   providers: [
     StatusBar,

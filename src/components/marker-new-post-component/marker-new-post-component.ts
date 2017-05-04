@@ -1,5 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import {UserService} from '../../providers/user-service';
+import { Component, OnInit, Input, EventEmitter } from '@angular/core';
+import { UserService } from '../../providers/user-service';
+import { NewCommentComponent } from '../new-comment-component/new-comment-component';
+
+
+
+import { ModalController, NavParams } from 'ionic-angular';
 
 
 /**
@@ -13,26 +18,37 @@ import {UserService} from '../../providers/user-service';
   templateUrl: 'marker-new-post-component.html',
   providers: [UserService]
 })
-export class MarkerNewPostComponent implements OnInit{
+export class MarkerNewPostComponent implements OnInit {
 
-private user;
-  constructor(private _userService: UserService) { }
+  @Input() StoryID: number = 0;
 
-  ngOnInit() {    
+
+  private user;
+  constructor(private _userService: UserService, public modalCtrl: ModalController) { }
+
+  ngOnInit() {
     this.loadNewPostMarker();
   }
 
-  loadNewPostMarker(){
-     this._userService.getLoggedinInUser().subscribe(s => {
+  loadNewPostMarker() {
+    this._userService.getLoggedinInUser().subscribe(s => {
 
-       this.user = s;
-     
+      this.user = s;
+
     });
   }
 
-  redirecttoNewPost(){   
+  redirecttoNewPost() {
 
-    //this._router.navigate(["/NewPost"]);
+    let commentsModal = this.modalCtrl.create(NewCommentComponent, { storyID: this.StoryID}, { showBackdrop: true, enableBackdropDismiss: true });
+
+    commentsModal.onDidDismiss(data => {
+
+      /*if(data){
+        this.CommentCount = data.commentsCount;
+      } */
+    });
+    commentsModal.present();
 
   }
 

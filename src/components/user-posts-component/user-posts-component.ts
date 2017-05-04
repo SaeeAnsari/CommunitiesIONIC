@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter } from '@angular/core';
 import { UserCommentsComponent } from '../user-comments-component/user-comments-component';
 
 import { ModalController, NavParams } from 'ionic-angular';
@@ -17,6 +17,9 @@ export class UserPostsComponent implements OnInit {
   @Input() PostMessage: string;
   @Input() PostMediaURL: string;
   @Input() StoryID: number;
+  @Input() CommentCount: number;
+  @Input() LikeCount: number;
+  @Input() UserID: number;
 
   constructor(public modalCtrl: ModalController) { }
 
@@ -26,14 +29,17 @@ export class UserPostsComponent implements OnInit {
 
   openComments() {
 
-    let commentsModal = this.modalCtrl.create(UserCommentsComponent, { storyID: this.StoryID }, {showBackdrop: true, enableBackdropDismiss: true} );
+    let commentsModal = this.modalCtrl.create(UserCommentsComponent, { storyID: this.StoryID }, { showBackdrop: true, enableBackdropDismiss: true });
 
     commentsModal.onDidDismiss(data => {
-     console.log(data);
-   });
+
+      if(data){
+        this.CommentCount = data.commentsCount;
+      }      
+    });
     commentsModal.present();
 
-//alert('broke this as we need  to IONIZe it');
+    //alert('broke this as we need  to IONIZe it');
     /*
     const modalRef = this._modalService.open(UserCommentsComponent, { windowClass: 'dark-modal' } );   
     modalRef.componentInstance.storyID = this.StoryID;
