@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 
 import { StoryService } from '../../providers/story-service';
@@ -105,6 +105,8 @@ export class NewCommentComponent implements OnInit {
         this.mediaType = "";
         this.videoSelected = false;
         this.imageSelected = false;
+
+        this.vc.dismiss({storyID: id});
 
 
         this.optionsModel = [];

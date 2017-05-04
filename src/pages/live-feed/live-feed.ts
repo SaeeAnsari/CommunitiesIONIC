@@ -92,6 +92,10 @@ export class LiveFeed implements OnInit {
 
   }
 
+  StorySaved(){
+    this.loadStories();
+  }
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad LiveFeed');
   }

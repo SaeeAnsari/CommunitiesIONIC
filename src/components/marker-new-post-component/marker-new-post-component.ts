@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { UserService } from '../../providers/user-service';
 import { NewCommentComponent } from '../new-comment-component/new-comment-component';
 
@@ -22,6 +22,7 @@ export class MarkerNewPostComponent implements OnInit {
 
   @Input() StoryID: number = 0;
 
+  @Output() OnStorySave = new EventEmitter();
 
   private user;
   constructor(private _userService: UserService, public modalCtrl: ModalController) { }
@@ -40,13 +41,14 @@ export class MarkerNewPostComponent implements OnInit {
 
   redirecttoNewPost() {
 
-    let commentsModal = this.modalCtrl.create(NewCommentComponent, { storyID: this.StoryID}, { showBackdrop: true, enableBackdropDismiss: true });
+    let commentsModal = this.modalCtrl.create(NewCommentComponent, { storyID: this.StoryID }, { showBackdrop: true, enableBackdropDismiss: true });
 
     commentsModal.onDidDismiss(data => {
 
-      /*if(data){
-        this.CommentCount = data.commentsCount;
-      } */
+      if (data) {
+        this.StoryID = data.storyID;
+        this.OnStorySave.emit();
+      }
     });
     commentsModal.present();
 
