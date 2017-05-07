@@ -8,6 +8,9 @@ import { MyApp } from './app.component';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import {CloudModule, CloudSettings} from '@ionic/cloud-angular';
+
+
 
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
@@ -26,7 +29,20 @@ import {UserTagComponent} from '../components/user-tag-component/user-tag-compon
 import {UserSearchComponent} from '../pages/user-search-component/user-search-component';
 import {UserSearchItemComponent} from '../components/user-search-item-component/user-search-item-component';
 import {NewCommentComponent} from '../components/new-comment-component/new-comment-component';
+import {Login} from '../pages/login/login';
 
+
+
+const cloudSettings: CloudSettings = {
+  'core': {
+    'app_id': 'd87bdde8'
+  },
+  'auth': {
+    'facebook' : {
+      'scope': []
+    }
+  }
+}
 
 
 @NgModule({
@@ -45,12 +61,14 @@ import {NewCommentComponent} from '../components/new-comment-component/new-comme
     UserPostActionComponent,
     UserPostsComponent,
     UserTagComponent,
-    NewCommentComponent
+    NewCommentComponent,
+    Login
   ],
   imports: [
     BrowserModule,
     HttpModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    CloudModule.forRoot(cloudSettings)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -63,7 +81,8 @@ import {NewCommentComponent} from '../components/new-comment-component/new-comme
     UserSearchComponent,
     LiveFeed,
     UserCommentsComponent,
-    NewCommentComponent
+    NewCommentComponent,
+    Login
   ],
   providers: [
     StatusBar,
