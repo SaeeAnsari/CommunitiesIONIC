@@ -1,9 +1,13 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 
 import { LiveFeed } from '../live-feed/live-feed';
 
 import { FacebookAuth, User, AuthLoginResult, Auth } from '@ionic/cloud-angular';
+
+import {LoginComponent} from '../../components/login-component/login-component';
+import {RegisterUserComponent} from '../../components/register-user-component/register-user-component';
 
 
 /**
@@ -21,10 +25,10 @@ export class Login {
 
   loginDetails: AuthLoginResult;
 
-  constructor(public auth: Auth, private facebook: FacebookAuth, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public auth: Auth, private facebook: FacebookAuth, public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController) {
   }
 
-  
+  /*
     login() {
       try {
 
@@ -41,15 +45,45 @@ export class Login {
         alert(e);
       }
     }
-  
-  
-/*
-  login() {
+  */
+
+
+  facebookLogin() {
+
     this.auth.login('facebook').then(e => {
       alert('all done');
     });
   }
-*/
+
+  loginClicked(){
+
+    let loginRegisterModal = this.modalCtrl.create(LoginComponent, null, { showBackdrop: true, enableBackdropDismiss: true });
+
+    loginRegisterModal.onDidDismiss(data => {
+
+      if (data) {
+        if(data.isRegistering){
+          this.loadRegistrationModal();
+        }       
+      }
+    });
+    loginRegisterModal.present();
+  }
+
+  loadRegistrationModal(){
+    let registerModal = this.modalCtrl.create(RegisterUserComponent, null, { showBackdrop: true, enableBackdropDismiss: true });
+
+    registerModal.onDidDismiss(data => {
+
+      if (data) {
+        if(data.isRegistering){
+          this.loadRegistrationModal();
+        }       
+      }
+    });
+    registerModal.present();
+  }
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad Login');
   }

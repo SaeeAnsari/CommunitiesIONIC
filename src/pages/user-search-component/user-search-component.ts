@@ -74,7 +74,8 @@ export class UserSearchComponent  implements OnInit {
             active: element.Active,
             authenticationPortalID: element.AuthenticationPortalID,
             imageURL: element.ImageURL,
-            alreadyMember: element.AlreadyMember
+            alreadyMember: element.AlreadyMember,
+            email: element.Email
           };
 
           this.userItems.push(user);

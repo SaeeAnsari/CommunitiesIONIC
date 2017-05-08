@@ -3,5 +3,7 @@ export interface User{
     firstName: string,
     lastName: string,
     active: boolean,
-    authenticationPortalID: number
+    authenticationPortalID: number,
+    imageURL:string,
+    email: string
 }

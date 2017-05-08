@@ -29,6 +29,11 @@ import {UserTagComponent} from '../components/user-tag-component/user-tag-compon
 import {UserSearchComponent} from '../pages/user-search-component/user-search-component';
 import {UserSearchItemComponent} from '../components/user-search-item-component/user-search-item-component';
 import {NewCommentComponent} from '../components/new-comment-component/new-comment-component';
+
+import {LoginComponent} from '../components/login-component/login-component';
+import {RegisterUserComponent} from '../components/register-user-component/register-user-component';
+
+
 import {Login} from '../pages/login/login';
 
 
@@ -62,7 +67,9 @@ const cloudSettings: CloudSettings = {
     UserPostsComponent,
     UserTagComponent,
     NewCommentComponent,
-    Login
+    Login,
+    LoginComponent,
+    RegisterUserComponent
   ],
   imports: [
     BrowserModule,
@@ -82,7 +89,9 @@ const cloudSettings: CloudSettings = {
     LiveFeed,
     UserCommentsComponent,
     NewCommentComponent,
-    Login
+    Login,
+    LoginComponent,
+    RegisterUserComponent
   ],
   providers: [
     StatusBar,

@@ -76,7 +76,7 @@ export class CommunityService {
       JSON.stringify({
         Name: community.name,
         Description: community.description,
-        ImageURL: this._imageUploadURL + '/MediaUpload/Community/' + community.imageURL,
+        ImageURL: this._imageUploadURL + '/MediaUpload/Community/Thumb' + community.imageURL,
         OwnerID: userID,
         Type: 2,
         ID: community.id

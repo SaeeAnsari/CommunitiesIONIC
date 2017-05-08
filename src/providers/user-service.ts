@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {User} from '../interfaces/user';
+import { User } from '../interfaces/user';
 import { Http, Response, Headers, RequestOptions, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 // Observable class extensions
@@ -35,6 +35,7 @@ export class UserService {
 
   private isUploadingImage = false;
   private _url = 'http://localhost:49520/api/User';
+  private _imageUploadURL = 'http://localhost:49520';
   private _users: User[] = [];
   headers: Headers;
 
@@ -48,33 +49,34 @@ export class UserService {
     this.options = new RequestOptions({ headers: this.headers });
   }
 
-
-  public GetAllActiveUsers_old() {
-
-    let params: URLSearchParams = new URLSearchParams();
-
-    var request = new RequestOptions();
-    request.search = params;
-
-    var ret = this._http.get(this._url, request)
-      .map(ret => ret.json())
-      .subscribe(sub => {
-        sub.forEach(element => {
-
-          var user = {
-            id: element.ID,
-            firstName: element.FirstName,
-            lastName: element.LastName,
-            active: element.Active,
-            authenticationPortalID: element.AuthenticationPortalID
-          };
-
-          this._users.push(user);
-        });
-      })
-    return this._users;
-  }
-
+  /*
+  
+    public GetAllActiveUsers_old() {
+  
+      let params: URLSearchParams = new URLSearchParams();
+  
+      var request = new RequestOptions();
+      request.search = params;
+  
+      var ret = this._http.get(this._url, request)
+        .map(ret => ret.json())
+        .subscribe(sub => {
+          sub.forEach(element => {
+  
+            var user = {
+              id: element.ID,
+              firstName: element.FirstName,
+              lastName: element.LastName,
+              active: element.Active,
+              authenticationPortalID: element.AuthenticationPortalID
+            };
+  
+            this._users.push(user);
+          });
+        })
+      return this._users;
+    }
+  */
 
   public GetAllActiveUsers(searchVal: string, communityID: number): Observable<any> {
     return this._http.get(this._url + '/GetSearch?communityID=' + communityID + '&searchTerm=' + searchVal)
@@ -122,6 +124,30 @@ export class UserService {
       error.status ? `${error.status} - ${error.statusText}` : 'Server error';
     console.error(errMsg);
     return Observable.throw(errMsg);
+  }
+
+  public RegisterUser(user: User) {
+
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+    let data = {
+      ID: user.id,
+      FirstName: user.firstName,
+      LastName: user.lastName,
+      Email: user.email,
+      ImageURL: this._imageUploadURL + '/MediaUpload/User/Thumb' + user.imageURL,
+      AuthPortal: user.authenticationPortalID
+    }
+
+    return this._http.post(
+      this._url,
+      data,
+      { headers: this.headers }
+    )
+      .map(res => res.json())
+      .catch(this.handleError)
+
   }
 
 }
