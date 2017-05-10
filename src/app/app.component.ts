@@ -7,11 +7,14 @@ import { TabsPage } from '../pages/tabs/tabs';
 
 import {Login} from '../pages/login/login';
 
+import {UserLocation} from '../pages/user-location/user-location';
+
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = Login;
+  //rootPage:any = Login;
+  rootPage: any = UserLocation
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {

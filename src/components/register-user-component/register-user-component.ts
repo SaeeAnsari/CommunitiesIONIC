@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+
 
 import { Observable } from 'rxjs/Rx';
 import { UserService } from '../../providers/user-service';
@@ -28,8 +29,12 @@ export class RegisterUserComponent {
   private selfieURL: string = "";
 
 
-  constructor(private _fb: FormBuilder, public navCtrl: NavController, public navParams: NavParams,
-    private _userService: UserService, private _mediaPost: MediaPostService) {
+  constructor(private _fb: FormBuilder,
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private _userService: UserService,
+    private _mediaPost: MediaPostService,
+    public vc: ViewController) {
     this.registerationForm = this._fb.group({
       firstName: ['', [<any>Validators.required, <any>Validators.minLength(2)]],
       lastName: ['', [<any>Validators.required, <any>Validators.minLength(2)]],
@@ -52,7 +57,7 @@ export class RegisterUserComponent {
 
       this._mediaPost.postImage(formData, 'User').subscribe(sub => {
         this.uploaded = true;
-        this.isUploadingImage = false;      
+        this.isUploadingImage = false;
 
         this.selfieURL = sub;
       });
@@ -60,14 +65,22 @@ export class RegisterUserComponent {
   }
 
   saveUser(model, isValid: boolean) {
-    if(isValid && isValid == true){
-      if(this.selfieURL!= ""){
+    if (isValid && isValid == true) {
+      if (this.selfieURL != "") {
         model.imageURL = this.selfieURL;
       }
 
       model.authenticationPortalID = 1;//Custom
-      this._userService.RegisterUser(model).subscribe(sub=> {
+      this._userService.RegisterUser(model).subscribe(sub => {
         this.id = +sub;
+
+        sessionStorage.setItem('userID', this.id.toString());
+        let data = {
+          id:this.id
+        };
+
+        this.vc.dismiss(data);
+
       });
     }
   }

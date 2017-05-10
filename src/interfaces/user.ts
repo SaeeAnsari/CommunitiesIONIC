@@ -5,5 +5,6 @@ export interface User{
     active: boolean,
     authenticationPortalID: number,
     imageURL:string,
-    email: string
+    email: string,
+    password?: string
 }

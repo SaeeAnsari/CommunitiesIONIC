@@ -137,7 +137,8 @@ export class UserService {
       LastName: user.lastName,
       Email: user.email,
       ImageURL: this._imageUploadURL + '/MediaUpload/User/Thumb' + user.imageURL,
-      AuthPortal: user.authenticationPortalID
+      AuthPortal: user.authenticationPortalID,
+      Password: user.password
     }
 
     return this._http.post(

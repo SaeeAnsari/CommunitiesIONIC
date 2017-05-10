@@ -8,6 +8,7 @@ import { FacebookAuth, User, AuthLoginResult, Auth } from '@ionic/cloud-angular'
 
 import {LoginComponent} from '../../components/login-component/login-component';
 import {RegisterUserComponent} from '../../components/register-user-component/register-user-component';
+import {UserLocation} from '../user-location/user-location';
 
 
 /**
@@ -76,8 +77,9 @@ export class Login {
     registerModal.onDidDismiss(data => {
 
       if (data) {
-        if(data.isRegistering){
-          this.loadRegistrationModal();
+        if(data.id){
+          this.navCtrl.push(UserLocation, data);
+          
         }       
       }
     });

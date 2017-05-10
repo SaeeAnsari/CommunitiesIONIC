@@ -33,6 +33,8 @@ import {NewCommentComponent} from '../components/new-comment-component/new-comme
 import {LoginComponent} from '../components/login-component/login-component';
 import {RegisterUserComponent} from '../components/register-user-component/register-user-component';
 
+import {UserLocation} from '../pages/user-location/user-location';
+
 
 import {Login} from '../pages/login/login';
 
@@ -69,7 +71,8 @@ const cloudSettings: CloudSettings = {
     NewCommentComponent,
     Login,
     LoginComponent,
-    RegisterUserComponent
+    RegisterUserComponent,
+    UserLocation
   ],
   imports: [
     BrowserModule,
@@ -91,7 +94,8 @@ const cloudSettings: CloudSettings = {
     NewCommentComponent,
     Login,
     LoginComponent,
-    RegisterUserComponent
+    RegisterUserComponent,
+    UserLocation
   ],
   providers: [
     StatusBar,
