@@ -1,6 +1,5 @@
 {
   "name": "Communities",
   "app_id": "d87bdde8",
-  "v2": true,
-  "typescript": true
+  "type": "ionic-angular"
 }

@@ -105,26 +105,7 @@ header .container {
   position: relative;
   padding: 2px;
 }
-.feed_post_photo {
-  float: left;
-  height: 100px;
-  margin-right: 30px;
-  width: 100px;
-}
-.feed_post_photo img {
-	border: 1px solid #07e5d8;
-	border-radius: 50%;
-	box-shadow: 0 0 2px #000;
-	height: 100%;
-	width: 100%;
-}
-.feed_post_photo img {
-    border: 1px solid #07e5d8;
-    border-radius: 50%;
-    box-shadow: 0 0 2px #000;
-    height: 100%;
-    width: 100%;
-}
+
 .feed_post_user {
   padding-top: 20px;
 }

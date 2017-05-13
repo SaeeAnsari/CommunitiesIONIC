@@ -151,4 +151,24 @@ export class UserService {
 
   }
 
+
+  public SaveUserLocation(userId: number, lattitude, longitude){
+
+     var headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+    let data = {
+      userID: userId,
+      latitude: lattitude,
+      longitude: longitude
+    };
+
+    return this._http.post(
+      this._url + '/SaveUserLocation?userID=' + userId + '&latitude=' + lattitude + '&longitude=' + longitude,
+      null,
+      { headers: this.headers }
+    )
+      .map(res => res.json())
+      .catch(this.handleError)
+  }
 }

@@ -1,5 +1,5 @@
 
-.container{
+.containerNewComment{
 	max-width: 768px;
 	margin: auto;
 }
@@ -20,8 +20,15 @@
   padding: 2px;
 }
 
-.textArea{
-    height: 150px
+.post-body textarea{
+    height: 150px;
+     border-radius: 10px;
+    font-size: 15px;
+    margin-bottom: 20px;
+    min-height: 60px;
+    padding-left: 10px;
+    margin-left: 10px;
+    width: 95%;
 }   
 
 
@@ -79,6 +86,10 @@
         top: 50%;
         transform: translate(-50%, -50%);
     z-index:1;
+    }
+
+    .submitButton{
+        font-size: 20px;
     }
 
     .loader-text {
