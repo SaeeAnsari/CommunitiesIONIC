@@ -1,5 +1,5 @@
 <!--
-  Generated template for the UserSearchComponent page.
+  Generated template for the MyCommunitiesPage page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
@@ -14,9 +14,7 @@
 
 </ion-header>
 
-
 <ion-content padding>
-
   <section id="communiti_list">
     <div class="container">
       <div class="login_form">
@@ -28,18 +26,16 @@
           </div>
         </form>
       </div>
-
-
       <ion-list>
-        <div *ngFor="let item of userItems">
-          <user-search-item-component ID="{{item.id}}" Name='{{item.firstName + " " + item.lastName}}' Image='{{item.imageURL}}' AlreadyMember='{{item.alreadyMember}}'
-            CommunityID='{{communityID}}' (UserAction)="userAddedorRemoved()"></user-search-item-component>
+
+        <div *ngFor="let item of searchItems">
+
+          <community-item ID={{item.id}} HeaderText={{item.name}} BodyText={{item.description}} Member={{item.isMember}} ImageURL={{item.imageURL}}
+            (CommunityChanged)="userJoinedCommunity($event)"></community-item>
         </div>
+
       </ion-list>
-
-
     </div>
   </section>
-
 
 </ion-content>

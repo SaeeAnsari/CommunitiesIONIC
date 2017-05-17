@@ -2,14 +2,14 @@ import { Component } from '@angular/core';
 
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 
-import { LiveFeed } from '../live-feed/live-feed';
+import { TabsPage } from '../tabs/tabs';
 
 import { FacebookAuth, User, AuthLoginResult, Auth } from '@ionic/cloud-angular';
 
-import {LoginComponent} from '../../components/login-component/login-component';
-import {RegisterUserComponent} from '../../components/register-user-component/register-user-component';
-import {UserLocation} from '../user-location/user-location';
-
+import { LoginComponent } from '../../components/login-component/login-component';
+import { RegisterUserComponent } from '../../components/register-user-component/register-user-component';
+import { UserLocation } from '../user-location/user-location';
+import { UserService } from '../../providers/user-service';
 
 /**
  * Generated class for the Login page.
@@ -21,12 +21,20 @@ import {UserLocation} from '../user-location/user-location';
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
+  providers: [UserService]
 })
 export class Login {
 
   loginDetails: AuthLoginResult;
 
-  constructor(public auth: Auth, private facebook: FacebookAuth, public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController) {
+  constructor(
+    public auth: Auth,
+    private facebook: FacebookAuth,
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public modalCtrl: ModalController,
+    private _userService: UserService
+  ) {
   }
 
   /*
@@ -56,37 +64,46 @@ export class Login {
     });
   }
 
-  loginClicked(){
+  loginClicked() {
 
     let loginRegisterModal = this.modalCtrl.create(LoginComponent, null, { showBackdrop: true, enableBackdropDismiss: true });
 
     loginRegisterModal.onDidDismiss(data => {
 
       if (data) {
-        if(data.isRegistering){
+        if (data.isRegistering) {
           this.loadRegistrationModal();
-        }       
+        }
       }
     });
     loginRegisterModal.present();
   }
 
-  loadRegistrationModal(){
+  loadRegistrationModal() {
     let registerModal = this.modalCtrl.create(RegisterUserComponent, null, { showBackdrop: true, enableBackdropDismiss: true });
 
     registerModal.onDidDismiss(data => {
 
       if (data) {
-        if(data.id){
+        if (data.id) {
           this.navCtrl.push(UserLocation, data);
-          
-        }       
+
+        }
       }
     });
     registerModal.present();
   }
 
   ionViewDidLoad() {
+
+    this._userService.getLoggedinInUser().subscribe(s => {
+      if (s.ID > 0 && s.DefaultCommunityID > 0) {
+        let communityID = s.DefaultCommunityID;
+        this.navCtrl.push(TabsPage, { communityID: communityID });
+      }
+    });
+
+
     console.log('ionViewDidLoad Login');
   }
 

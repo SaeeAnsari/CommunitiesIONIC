@@ -1,15 +1,15 @@
 /*================================
-      User Search Item
-      
+      Community Item
 ================================*/
+
 .memmber_group {
   background: #fff none repeat scroll 0 0;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.176);
   border: 1px solid rgba(0, 0, 0, 0.15);
-  border-radius: 5px;
+  border-radius: 15px;
   overflow: hidden;
-  padding: 5px;
-  margin: 10px 0;
+  padding: 15px;
+  margin: 20px 0;
 }
 
 .single_item {
@@ -21,11 +21,11 @@
     border-radius: 5px;
     color: #000;
     display: inline-block;
-    font-size: 12px;
-    padding: 7px 20px;
+    font-size: 15px;
+    padding: 7px 40px;
     position: absolute;
-    right: 5px;
-    top: 13px;
+    right: 15px;
+    top: 43px;
     transition: all 0.5s ease 0s;
 }
 .single_item >div> button:hover {
@@ -41,6 +41,23 @@
     width: 50px;
 }
 
-.divUserName{
-    width: 70%;
+
+
+.communityName {
+    font-size: 20px;
+    padding-top: 35px;
+    padding-top: 0;
+}
+
+.contentCommunityPara {
+    color: #7e7e7e;
+    font-size: 15px;
+}
+
+.contentCommunity {
+    padding: 5px 0;
+}
+.contentCommunity {
+    position: relative;
+    top: 50%;
 }

@@ -100,7 +100,5 @@ export class LiveFeed implements OnInit {
     console.log('ionViewDidLoad LiveFeed');
   }
 
-  
-
 
 }

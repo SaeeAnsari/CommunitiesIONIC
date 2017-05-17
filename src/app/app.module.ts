@@ -8,7 +8,7 @@ import { MyApp } from './app.component';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import {CloudModule, CloudSettings} from '@ionic/cloud-angular';
+import { CloudModule, CloudSettings } from '@ionic/cloud-angular';
 import { Geolocation } from '@ionic-native/geolocation';
 
 
@@ -17,27 +17,30 @@ import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
-import {Community} from '../pages/community/community';
-import {LiveFeed} from '../pages/live-feed/live-feed';
+import { Community } from '../pages/community/community';
+import { LiveFeed } from '../pages/live-feed/live-feed';
+import { MyCommunitiesPage } from '../pages/my-communities/my-communities';
 
-import {MarkerNewPostComponent} from '../components/marker-new-post-component/marker-new-post-component';
-import {UserCommentsComponent} from '../components/user-comments-component/user-comments-component';
-import {UserPostActionComponent} from '../components/user-post-action-component/user-post-action-component';
-import {UserPostsComponent} from '../components/user-posts-component/user-posts-component';
-import {UserTagComponent} from '../components/user-tag-component/user-tag-component';
-
-
-import {UserSearchComponent} from '../pages/user-search-component/user-search-component';
-import {UserSearchItemComponent} from '../components/user-search-item-component/user-search-item-component';
-import {NewCommentComponent} from '../components/new-comment-component/new-comment-component';
-
-import {LoginComponent} from '../components/login-component/login-component';
-import {RegisterUserComponent} from '../components/register-user-component/register-user-component';
-
-import {UserLocation} from '../pages/user-location/user-location';
+import { MarkerNewPostComponent } from '../components/marker-new-post-component/marker-new-post-component';
+import { UserCommentsComponent } from '../components/user-comments-component/user-comments-component';
+import { UserPostActionComponent } from '../components/user-post-action-component/user-post-action-component';
+import { UserPostsComponent } from '../components/user-posts-component/user-posts-component';
+import { UserTagComponent } from '../components/user-tag-component/user-tag-component';
 
 
-import {Login} from '../pages/login/login';
+import { UserSearchComponent } from '../pages/user-search-component/user-search-component';
+import { UserSearchItemComponent } from '../components/user-search-item-component/user-search-item-component';
+import { NewCommentComponent } from '../components/new-comment-component/new-comment-component';
+
+import { LoginComponent } from '../components/login-component/login-component';
+import { RegisterUserComponent } from '../components/register-user-component/register-user-component';
+
+import { UserLocation } from '../pages/user-location/user-location';
+
+
+import { Login } from '../pages/login/login';
+import { CommunityItemComponent } from '../components/community-item/community-item';
+
 
 
 
@@ -46,7 +49,7 @@ const cloudSettings: CloudSettings = {
     'app_id': 'd87bdde8'
   },
   'auth': {
-    'facebook' : {
+    'facebook': {
       'scope': []
     }
   }
@@ -73,7 +76,9 @@ const cloudSettings: CloudSettings = {
     Login,
     LoginComponent,
     RegisterUserComponent,
-    UserLocation
+    UserLocation,
+    MyCommunitiesPage,
+    CommunityItemComponent
   ],
   imports: [
     BrowserModule,
@@ -96,13 +101,15 @@ const cloudSettings: CloudSettings = {
     Login,
     LoginComponent,
     RegisterUserComponent,
-    UserLocation
+    UserLocation,
+    MyCommunitiesPage,
+    CommunityItemComponent
   ],
   providers: [
     StatusBar,
     SplashScreen,
     Geolocation,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })
-export class AppModule {}
+export class AppModule { }

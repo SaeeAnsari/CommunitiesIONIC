@@ -8,13 +8,15 @@ import { TabsPage } from '../pages/tabs/tabs';
 import {Login} from '../pages/login/login';
 
 import {UserLocation} from '../pages/user-location/user-location';
+import {MyCommunitiesPage} from '../pages/my-communities/my-communities';
+import {UserSearchComponent} from '../pages/user-search-component/user-search-component';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   //rootPage:any = Login;
-  rootPage: any = UserLocation
+  rootPage: any = MyCommunitiesPage;//UserSearchComponent;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
