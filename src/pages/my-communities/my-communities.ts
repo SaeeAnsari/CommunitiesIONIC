@@ -5,6 +5,11 @@ import { UserService } from '../../providers/user-service';
 import { Community } from '../../interfaces/community';
 import { FormGroup, FormControl, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 
+
+import {CommunityPage} from '../../pages/community/community';
+
+
+
 import { Observable } from 'rxjs/Observable';
 
 
@@ -111,6 +116,10 @@ export class MyCommunitiesPage implements OnInit {
 
   ionViewDidLoad() {
 
+  }
+
+  addCommunities(){
+    this.navCtrl.push(CommunityPage);
   }
 
 }

@@ -7,8 +7,8 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Add Friends
-      <div class="AddIconRight" (click)="navigateToFeed()"><i class="fa fa-check-circle" aria-hidden="true"></i></div>
+    <ion-title>Communities
+      <div class="my-communities-AddIconRight" (click)="addCommunities()"><i class="fa fa-plus-square" aria-hidden="true"></i></div>
     </ion-title>
   </ion-navbar>
 
@@ -20,7 +20,7 @@
       <div class="login_form">
         <form action="#" method="post">
           <div class="search_feild">
-            <input class="form-control" type="search" name="search" id="search" value="" placeholder="lookup bud!..." [(ngModel)]="searchVal"
+            <input class="form-control" type="search" name="search" id="search" value="" placeholder="Search..." [(ngModel)]="searchVal"
               [formControl]="searchInput">
             <button type="submit"><i class="fa fa-search" (click)="searchUsers()"></i></button>
           </div>

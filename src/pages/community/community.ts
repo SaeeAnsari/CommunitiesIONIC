@@ -24,7 +24,7 @@ import {UserSearchComponent} from '../user-search-component/user-search-componen
   templateUrl: 'community.html',
   providers: [CommunityService, MediaPostService, UserService]
 })
-export class Community implements OnInit {
+export class CommunityPage implements OnInit {
 
   public communityForm: FormGroup;
   public events: any[] = []; // use later to display form changes

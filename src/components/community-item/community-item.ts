@@ -2,7 +2,7 @@ import { Component , OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {Community} from '../../interfaces/community';
 import {UserService} from '../../providers/user-service';
-import {LiveFeed} from '../../pages/live-feed/live-feed';
+import {TabsPage} from '../../pages/tabs/tabs';
 /**
  * Generated class for the CommunityItemComponent component.
  *
@@ -75,6 +75,7 @@ export class CommunityItemComponent  implements OnInit{
   }
 
   navigate(){
-    this.navCtrl.push(LiveFeed, {communityID: this.ID});
+    sessionStorage.setItem('activeCommunity', this.ID);  
+    this.navCtrl.push(TabsPage, {communityID: this.ID});
   }
 }

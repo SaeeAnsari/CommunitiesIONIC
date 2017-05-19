@@ -21,9 +21,15 @@ export class UserPostsComponent implements OnInit {
   @Input() LikeCount: number;
   @Input() UserID: number;
 
+  private hasImage: boolean = false;
+
   constructor(public modalCtrl: ModalController) { }
 
   ngOnInit() {
+    if (this.PostMediaURL.length > 0) {
+      
+      this.hasImage = true;
+    }
 
   }
 
@@ -33,9 +39,9 @@ export class UserPostsComponent implements OnInit {
 
     commentsModal.onDidDismiss(data => {
 
-      if(data){
+      if (data) {
         this.CommentCount = data.commentsCount;
-      }      
+      }
     });
     commentsModal.present();
 

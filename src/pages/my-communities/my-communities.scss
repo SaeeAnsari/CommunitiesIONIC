@@ -1,5 +1,43 @@
 
 /*================================
+			Header
+================================*/
+
+
+
+
+header .container {
+    background: #07e5d8 none repeat scroll 0 0;
+    
+    
+}
+
+
+
+
+.headerText{
+    color: #fff;
+    display: block;
+    font-size: 25px;
+    padding: 20px;
+    text-align: left;
+    text-transform: capitalize;
+    position: relative;
+    font-family: 'Rajdhani', sans-serif;
+    -webkit-transition: .5s;
+    transition: .5s;   
+   
+}
+
+
+
+
+.nameIcon{
+    padding-left: 10px;
+}
+
+
+/*================================
       My Communities
 ================================*/
 .login_form {
@@ -104,12 +142,12 @@
     background: #FF931E;
 }
 
-.AddIconRight{
+.my-communities-AddIconRight{
     float:right;
     padding-right: 10px;
     top: 43px;
-    transition: all 0.5s ease 0s;
-     cursor: pointer; cursor: hand;
+    
+    cursor: pointer; cursor: hand;
 
 }
 

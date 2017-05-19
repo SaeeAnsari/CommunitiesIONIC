@@ -17,7 +17,7 @@ import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
-import { Community } from '../pages/community/community';
+import { CommunityPage } from '../pages/community/community';
 import { LiveFeed } from '../pages/live-feed/live-feed';
 import { MyCommunitiesPage } from '../pages/my-communities/my-communities';
 
@@ -63,7 +63,7 @@ const cloudSettings: CloudSettings = {
     ContactPage,
     HomePage,
     TabsPage,
-    Community,
+    CommunityPage,
     UserSearchComponent,
     UserSearchItemComponent,
     LiveFeed,
@@ -93,7 +93,7 @@ const cloudSettings: CloudSettings = {
     ContactPage,
     HomePage,
     TabsPage,
-    Community,
+    CommunityPage,
     UserSearchComponent,
     LiveFeed,
     UserCommentsComponent,

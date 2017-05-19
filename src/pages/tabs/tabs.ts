@@ -3,9 +3,9 @@ import { Component } from '@angular/core';
 import { AboutPage } from '../about/about';
 import { ContactPage } from '../contact/contact';
 import { HomePage } from '../home/home';
-import {Community} from '../community/community';
+import {CommunityPage} from '../community/community';
 import {LiveFeed} from '../live-feed/live-feed';
-
+import {MyCommunitiesPage} from '../my-communities/my-communities';
 import {UserSearchComponent} from '../user-search-component/user-search-component';
 
 @Component({
@@ -14,7 +14,7 @@ import {UserSearchComponent} from '../user-search-component/user-search-componen
 export class TabsPage {
 
   tab0Root = LiveFeed;
-  tab1Root = Community;
+  tab1Root = MyCommunitiesPage;
   tab2Root = AboutPage;
   tab3Root = ContactPage;
 

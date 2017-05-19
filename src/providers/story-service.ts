@@ -3,8 +3,8 @@ import { Http, Response, Headers, RequestOptions, URLSearchParams } from '@angul
 
 
 
-import {UserPost} from '../interfaces/user-post';
-import {Story} from '../interfaces/story';
+import { UserPost } from '../interfaces/user-post';
+import { Story } from '../interfaces/story';
 
 
 import { Observable } from 'rxjs/Observable';
@@ -86,7 +86,9 @@ export class StoryService {
     let videoTag;
     let imageURL = '';
 
-    if (mediaType == "Video") {
+
+
+    if (mediaType == "Video" && mediaName.length > 0) {
       videoTag = {
         ID: -1,
         VideoIdentifier: this._uploadURL + '/MediaUpload/Story/' + mediaName,
@@ -99,7 +101,9 @@ export class StoryService {
         VideoIdentifier: '',
         HostProvider: 0
       };
-      imageURL = this._uploadURL + '/MediaUpload/Story/Thumb/' + mediaName;
+      if (mediaName.length > 0) {
+        imageURL = this._uploadURL + '/MediaUpload/Story/Thumb/' + mediaName;
+      }
     }
 
 

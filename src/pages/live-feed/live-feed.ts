@@ -39,19 +39,7 @@ export class LiveFeed implements OnInit {
     private _userService: UserService,
     public modalCtrl: ModalController) {
 
-    if (this.navParams.get('communityID')) {
-      this.communityID = this.navParams.get('communityID');
-      this.getCommunityDetails();
-      this.loadStories();
-    }
-    else {
-      this._userService.getLoggedinInUser().subscribe(sub => {
 
-        this.communityID = sub.DefaultCommunityID
-        this.getCommunityDetails();
-        this.loadStories();
-      });
-    }
 
   }
 
@@ -90,9 +78,29 @@ export class LiveFeed implements OnInit {
 
   ngOnInit() {
 
+    if (this.navParams.get('communityID')) {
+      this.communityID = this.navParams.get('communityID');
+
+    }
+    else if (sessionStorage.getItem('activeCommunity')) {
+      this.communityID = parseInt(sessionStorage.getItem('activeCommunity'));
+
+    }
+    else {
+      this._userService.getLoggedinInUser().subscribe(sub => {
+
+        this.communityID = sub.DefaultCommunityID;
+
+      });
+    }
+
+    if (this.communityID > 0) {
+      this.getCommunityDetails();
+      this.loadStories();
+    }
   }
 
-  StorySaved(){
+  StorySaved() {
     this.loadStories();
   }
 

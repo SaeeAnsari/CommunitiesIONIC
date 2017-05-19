@@ -10,13 +10,14 @@ import {Login} from '../pages/login/login';
 import {UserLocation} from '../pages/user-location/user-location';
 import {MyCommunitiesPage} from '../pages/my-communities/my-communities';
 import {UserSearchComponent} from '../pages/user-search-component/user-search-component';
+import {LiveFeed} from '../pages/live-feed/live-feed';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   //rootPage:any = Login;
-  rootPage: any = MyCommunitiesPage;//UserSearchComponent;
+  rootPage: any = TabsPage;//LiveFeed;//MyCommunitiesPage;//UserSearchComponent;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
