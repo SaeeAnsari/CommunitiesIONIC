@@ -47,6 +47,11 @@ export class CommunityPage implements OnInit {
       name: ['', [<any>Validators.required, <any>Validators.minLength(5)]],
       description: ['']
     });
+
+    if(this.navParams.get('communityID')){
+      this.id = +this.navParams.get("communityID");
+      this.loadCommunity();
+    }
   }
 
 

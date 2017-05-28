@@ -6,6 +6,9 @@ import { StoryService } from '../../providers/story-service';
 import { CommunityService } from '../../providers/community-service';
 import { UserService } from '../../providers/user-service';
 
+import {CommunityPage} from '../../pages/community/community';
+
+
 
 
 
@@ -90,14 +93,18 @@ export class LiveFeed implements OnInit {
       this._userService.getLoggedinInUser().subscribe(sub => {
 
         this.communityID = sub.DefaultCommunityID;
-
+        this.BootstrapFeed();
       });
     }
 
     if (this.communityID > 0) {
-      this.getCommunityDetails();
-      this.loadStories();
+      this.BootstrapFeed();
     }
+  }
+
+  BootstrapFeed(){
+    this.getCommunityDetails();
+    this.loadStories();
   }
 
   StorySaved() {
@@ -106,6 +113,10 @@ export class LiveFeed implements OnInit {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LiveFeed');
+  }
+
+  editCommunities(){
+    this.navCtrl.push(CommunityPage, {communityID: this.communityID});
   }
 
 
