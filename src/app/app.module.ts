@@ -40,6 +40,7 @@ import { UserLocation } from '../pages/user-location/user-location';
 
 import { Login } from '../pages/login/login';
 import { CommunityItemComponent } from '../components/community-item/community-item';
+import { OpenGraphServiceProvider } from '../providers/open-graph-service/open-graph-service';
 
 
 
@@ -109,7 +110,8 @@ const cloudSettings: CloudSettings = {
     StatusBar,
     SplashScreen,
     Geolocation,
-    { provide: ErrorHandler, useClass: IonicErrorHandler }
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    OpenGraphServiceProvider
   ]
 })
 export class AppModule { }

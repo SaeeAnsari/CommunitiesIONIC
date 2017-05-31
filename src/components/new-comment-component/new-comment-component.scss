@@ -23,17 +23,30 @@
   padding: 2px;
 }
 
-.post-body textarea{
-    height: 150px;
+.post-body > textarea{
+    height: 50px;
      border-radius: 10px;
     font-size: 15px;
     margin-bottom: 20px;
-    min-height: 60px;
+    min-height: 30px;
     padding-left: 10px;
     margin-left: 10px;
     width: 95%;
 }   
 
+.textAreaSmall{
+    height: 20px;
+    margin-bottom: 10px;
+}
+
+
+.newMedia > img{
+    border: 5px solid #dcdcdc;
+    border-radius: 5px;
+    height: auto;
+    width: 95%;
+    margin-left: 10px;
+}
 
 
 .fileUpload {

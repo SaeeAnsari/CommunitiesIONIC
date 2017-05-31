@@ -15,40 +15,49 @@
         <div *ngIf="user" class="feed_post_header">
           <app-user-tag ID="{{user.id}}" ImageURL="{{user.imageURL}}" Name="{{user.displayName}}"></app-user-tag>
         </div>
-        <div class="post-top">
-          &nbsp;
-        </div>
+
 
         <div class="form-group">
 
           <ion-item>
             <ion-label><i class="fa fa-users"></i> Communities</ion-label>
             <ion-select [(ngModel)]="optionsModel" multiple="true">
-              <ion-option  *ngFor="let item of userCommunities" value="{{item.id}}" [selected]="item.id == activeCommunity">{{item.name}}</ion-option>
+              <ion-option *ngFor="let item of userCommunities" value="{{item.id}}" [selected]="item.id == activeCommunity">{{item.name}}</ion-option>
             </ion-select>
           </ion-item>
 
         </div>
 
         <div class="post-body">
-          <div >
-            <textarea  rows="3" placeholder="Whats on your mind?" [(ngModel)]="postText"></textarea>
+
+
+
+          <textarea [ngClass]="{textAreaSmall: graphFound == true}" rows="3" placeholder="Whats on your mind?" [(ngModel)]="postText"
+            [formControl]="PostTextControl">
+            </textarea>
+
+          <div *ngIf="graphFound == true">
+            <div class="newMedia">
+              <img class="d-flex mr-3" src="{{graphImage}}" alt="Generic placeholder image">
+
+            </div>
           </div>
+
         </div>
 
         <div class="form-group">
+          <div *ngIf="graphFound == false">
+            <div class="fileUpload btn btn-primary" *ngIf="!videoSelected">
+              <span><i class="fa fa-camera fa-2x" aria-hidden="true"></i></span>
+              <input type="file" class="upload" (change)="imageFileChange($event)" />
+            </div>
 
-          <div class="fileUpload btn btn-primary" *ngIf="!videoSelected">
-            <span><i class="fa fa-camera fa-2x" aria-hidden="true"></i></span>
-            <input type="file" class="upload" (change)="imageFileChange($event)" />
+
+            <div class="fileUpload btn btn-primary" *ngIf="!imageSelected">
+              <span><i class="fa fa-video-camera fa-2x" aria-hidden="true"></i></span>
+              <input type="file" class="upload" (change)="videoFileChange($event)" />
+            </div>
           </div>
-
-
-          <div class="fileUpload btn btn-primary" *ngIf="!imageSelected">
-            <span><i class="fa fa-video-camera fa-2x" aria-hidden="true"></i></span>
-            <input type="file" class="upload" (change)="videoFileChange($event)" />
-          </div>
-
           <div class="fileUpload submitButton  pull-right"><button type="submit" class="btn btn-primary" [disabled]="isUploadingImage" (click)="post()">Go <i class="fa fa-check fa-2x" aria-hidden="true"></i></button></div>
         </div>
         <div *ngIf="uploaded">Uploaded! ready to save</div>

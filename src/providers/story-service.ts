@@ -78,7 +78,7 @@ export class StoryService {
       .catch(this.handleError);
   }
 
-  SavePost(userID: number, postText: string, mediaType: string, mediaName: string, selectedCommunities: number[]): Observable<any> {
+  SavePost(userID: number, postText: string, mediaType: string, mediaName: string, selectedCommunities: number[], externalImageURL:string): Observable<any> {
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
 
@@ -101,7 +101,10 @@ export class StoryService {
         VideoIdentifier: '',
         HostProvider: 0
       };
-      if (mediaName.length > 0) {
+      if(externalImageURL.length > 0){
+        imageURL = externalImageURL;
+      }
+      else if (mediaName.length > 0) {
         imageURL = this._uploadURL + '/MediaUpload/Story/Thumb/' + mediaName;
       }
     }

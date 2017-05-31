@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 
 import { StoryService } from '../../providers/story-service';
@@ -12,6 +12,12 @@ import { UserService } from "../../providers/user-service";
 
 
 import { ViewController, NavParams, NavController } from 'ionic-angular';
+import { OpenGraphServiceProvider } from '../../providers/open-graph-service/open-graph-service';
+
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/throttleTime';
+import 'rxjs/add/observable/fromEvent';
 
 
 
@@ -24,7 +30,7 @@ import { ViewController, NavParams, NavController } from 'ionic-angular';
 @Component({
   selector: 'new-comment-component',
   templateUrl: 'new-comment-component.html',
-  providers: [UserService, StoryService, MediaPostService, CommunityService]
+  providers: [UserService, StoryService, MediaPostService, CommunityService, OpenGraphServiceProvider]
 })
 export class NewCommentComponent implements OnInit {
 
@@ -43,8 +49,18 @@ export class NewCommentComponent implements OnInit {
 
   private userCommunities = [];
 
+  PostTextControl = new FormControl();
+
 
   private optionsModel: number[] = [];
+
+
+  private graphFound: boolean = false;
+  private graphDescription: string = "";
+  private graphTitle: string = "";
+  private graphImage: string = "";
+  private graphVideo: string = "";
+
 
   constructor(private _fb: FormBuilder,
     private _userService: UserService,
@@ -53,7 +69,8 @@ export class NewCommentComponent implements OnInit {
     private _community: CommunityService,
     public nav: NavController,
     public vc: ViewController,
-    public navParams: NavParams) {
+    public navParams: NavParams,
+    private _openGraphApi: OpenGraphServiceProvider) {
 
   }
 
@@ -74,8 +91,8 @@ export class NewCommentComponent implements OnInit {
         this.activeCommunity = sessionStorage.getItem("activeCommunity").toString();
       }
 
-       this.optionsModel.push(this.activeCommunity);
- 
+      this.optionsModel.push(this.activeCommunity);
+
       this._community.GetUserCommunities(this.user.id).subscribe(sub => {
 
         this.userCommunities = [];
@@ -90,13 +107,45 @@ export class NewCommentComponent implements OnInit {
       });
     });
 
+    this.listenToGraph();
+
+  }
+
+  listenToGraph() {
+    this.PostTextControl.valueChanges
+      .debounceTime(1000)
+      .distinctUntilChanged()
+      .subscribe(va => {
+        let uri = this._openGraphApi.checkIfURLExist(this.postText);
+
+        if (uri != "") {
+          this._openGraphApi.GetOpenGraphDetails(uri).subscribe(sub => {
+            if(sub.hybridGraph){
+              this.graphDescription = sub.hybridGraph.description;
+              this.graphTitle = sub.hybridGraph.title;
+              this.graphImage = sub.hybridGraph.image;
+              this.graphVideo = sub.hybridGraph.url;
+              this.graphFound = true;
+
+              this.postText = this.graphTitle;
+              this.mediaType = "Image";
+
+            }
+          });
+        }
+      });
   }
 
   post() {
 
     if (this.user && (this.postText != '' || this.mediaName != '')) {
 
-      this._storyService.SavePost(this.user.id, this.postText, this.mediaType, this.mediaName, this.optionsModel).subscribe(sub => {
+      let extImageURL = "";
+      if(this.graphImage.length> 0){
+        extImageURL = this.graphImage;
+      }
+
+      this._storyService.SavePost(this.user.id, this.postText, this.mediaType, this.mediaName, this.optionsModel, extImageURL).subscribe(sub => {
         let id = sub;
         this.isUploadingImage = false;
         this.uploaded = false;
@@ -106,7 +155,7 @@ export class NewCommentComponent implements OnInit {
         this.videoSelected = false;
         this.imageSelected = false;
 
-        this.vc.dismiss({storyID: id});
+        this.vc.dismiss({ storyID: id });
 
 
         this.optionsModel = [];
@@ -179,7 +228,7 @@ export class NewCommentComponent implements OnInit {
     this.vc.dismiss();
   }
 
-  getSelected(val){
+  getSelected(val) {
     console.log(val);
   }
 
