@@ -1,4 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
+
+import { InAppBrowser } from '@ionic-native/in-app-browser';
+
 import { CommentService } from '../../providers/comment-service';
 import { UserService } from '../../providers/user-service';
 import { StoryService } from '../../providers/story-service';
@@ -15,25 +18,49 @@ import { ViewController, NavParams, NavController } from 'ionic-angular';
 @Component({
   selector: 'app-user-comments',
   templateUrl: 'user-comments-component.html',
-  providers: [UserService, CommentService, StoryService]
+  providers: [UserService, CommentService, StoryService, InAppBrowser]
 })
-export class UserCommentsComponent {
+export class UserCommentsComponent implements OnInit {
 
-  private commentPost: string;
-  private comments = [];
-
-
-  @Input() storyID: number;
-
-  constructor(private _commentService: CommentService, private _userService: UserService, private _storyService: StoryService,
-    public nav: NavController,
-    public vc: ViewController,
-    public navParams: NavParams) {
-
-    if (this.navParams.get('storyID')) {
+  
+  ngOnInit(): void {
+     if (this.navParams.get('storyID')) {
       this.storyID = this.navParams.get('storyID');
       this.loadComments();
     }
+
+    if(this.navParams.get("postMediaURL")){
+      this.postMediaURL = this.navParams.get("postMediaURL");
+    }
+
+    if(this.navParams.get("postMessage")){
+      this.postMessage = this.navParams.get("postMessage");
+    }
+
+     if(this.navParams.get("storyExternalURL")){
+      this.storyExternalURL = this.navParams.get("storyExternalURL");
+    }    
+  }
+
+  private commentPost: string;
+  private comments = [];
+  private postMediaURL:string;
+  private postMessage:string;
+  private storyExternalURL:string = "";
+
+  @Input() storyID: number;
+
+  constructor(
+    private _commentService: CommentService, 
+    private _userService: UserService, 
+    private _storyService: StoryService,
+    public nav: NavController,
+    public vc: ViewController,
+    public navParams: NavParams,
+    private iab: InAppBrowser
+    ) {
+
+   
   }
 
   loadComments() {
@@ -88,6 +115,13 @@ export class UserCommentsComponent {
         }
       });
     });
+  }
+
+  launch(){
+
+    if(this.storyExternalURL != ""){
+      const browser = this.iab.create(this.storyExternalURL);
+    }
   }
 
 

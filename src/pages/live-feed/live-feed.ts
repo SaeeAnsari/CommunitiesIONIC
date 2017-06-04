@@ -40,7 +40,8 @@ export class LiveFeed implements OnInit {
     private _storyService: StoryService,
     private _communityService: CommunityService,
     private _userService: UserService,
-    public modalCtrl: ModalController) {
+    public modalCtrl: ModalController
+    ) {
 
 
 
@@ -61,6 +62,10 @@ export class LiveFeed implements OnInit {
 
         postS.forEach(element => {
 
+          if(element.ID == 1066){
+            let xy = 0;
+          }
+
           this.posts.push({
             storyID: element.ID,
             title: element.Title,
@@ -73,7 +78,8 @@ export class LiveFeed implements OnInit {
             userID: element.StoryUser.ID,
             postDate: element.Timestamp,
             userProfileImage: element.StoryUser.ImageURL,
-            userFullName: element.StoryUser.DisplayName
+            userFullName: element.StoryUser.DisplayName,
+            storyExternalURL: element.StoryExternalURL 
           });
         });
       });

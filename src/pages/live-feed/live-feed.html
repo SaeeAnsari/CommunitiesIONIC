@@ -14,7 +14,7 @@
 </ion-header>
 
 
-<ion-content >
+<ion-content>
   <section id="feed_post">
     <div class="container">
 
@@ -30,12 +30,12 @@
       <div class="feed_post_area" *ngFor="let post of posts">
         <div class="feed_post_header">
           <app-user-tag ID="{{post.userID}}" ImageURL="{{post.userProfileImage}}" Name="{{post.userFullName}}" PostDate="{{post.postDate}}"></app-user-tag>
-          <app-user-post PostMessage="{{post.text}}" PostMediaURL="{{post.imageURL}}" StoryID="{{post.storyID}}"
-          LikeCount="{{post.likeCount}}" CommentCount="{{post.commentsCount}}" UserID="userID"
-          ></app-user-post>
+          <app-user-post PostMessage="{{post.text}}" PostMediaURL="{{post.imageURL}}" StoryID="{{post.storyID}}" LikeCount="{{post.likeCount}}"
+            CommentCount="{{post.commentsCount}}" UserID="userID" StoryExternalURL={{post.storyExternalURL}}></app-user-post>
           <div style="display:none">
             <app-user-comments></app-user-comments>
-          </div><!---->
+          </div>
+          <!---->
         </div>
       </div>
     </div>

@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, EventEmitter } from '@angular/core';
+
 import { UserCommentsComponent } from '../user-comments-component/user-comments-component';
 
 import { ModalController, NavParams } from 'ionic-angular';
@@ -20,22 +21,28 @@ export class UserPostsComponent implements OnInit {
   @Input() CommentCount: number;
   @Input() LikeCount: number;
   @Input() UserID: number;
+  @Input() StoryExternalURL: string;
 
   private hasImage: boolean = false;
 
-  constructor(public modalCtrl: ModalController) { }
+  constructor(
+    public modalCtrl: ModalController
+    ) { }
 
   ngOnInit() {
     if (this.PostMediaURL.length > 0) {
       
       this.hasImage = true;
     }
-
   }
+
+  
 
   openComments() {
 
-    let commentsModal = this.modalCtrl.create(UserCommentsComponent, { storyID: this.StoryID }, { showBackdrop: true, enableBackdropDismiss: true });
+    let commentsModal = this.modalCtrl.create(UserCommentsComponent, 
+    { storyID: this.StoryID, postMediaURL: this.PostMediaURL, postMessage: this.PostMessage, storyExternalURL : this.StoryExternalURL }, 
+    { showBackdrop: true, enableBackdropDismiss: true });
 
     commentsModal.onDidDismiss(data => {
 

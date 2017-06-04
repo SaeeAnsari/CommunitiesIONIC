@@ -78,7 +78,15 @@ export class StoryService {
       .catch(this.handleError);
   }
 
-  SavePost(userID: number, postText: string, mediaType: string, mediaName: string, selectedCommunities: number[], externalImageURL:string): Observable<any> {
+  SavePost(
+    userID: number,
+    postText: string,
+    mediaType: string,
+    mediaName: string,
+    selectedCommunities: number[],
+    externalImageURL: string,
+    storyExternalURL: string
+    ): Observable<any> {
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
 
@@ -101,7 +109,7 @@ export class StoryService {
         VideoIdentifier: '',
         HostProvider: 0
       };
-      if(externalImageURL.length > 0){
+      if (externalImageURL.length > 0) {
         imageURL = externalImageURL;
       }
       else if (mediaName.length > 0) {
@@ -117,8 +125,8 @@ export class StoryService {
       LongDescription: postText,
       Video: videoTag,
       CommunityIDs: [],
-      ImageURL: imageURL
-
+      ImageURL: imageURL,
+      StoryExternalURL: storyExternalURL
     };
     if (selectedCommunities.length > 0) {
       data.CommunityIDs = selectedCommunities;

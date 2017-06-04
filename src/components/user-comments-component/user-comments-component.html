@@ -1,9 +1,10 @@
 <ion-header>
-  
-  <ion-navbar >
-    <button ion-button (click)="closeModal()"icon-left>
+
+  <ion-navbar>
+    <button ion-button (click)="closeModal()" icon-left>
       <ion-icon name="return-left"></ion-icon>Back
-      </button><ion-title>Comments</ion-title>
+      </button>
+    <ion-title>Comments</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -19,6 +20,18 @@
       </span>
       </div>
     </div>
+
+
+    <!-- Adding the section for image here -->
+
+    <div class="feed_post_content commentPostContainer">
+      <p>{{postMessage}}</p>
+      <div>
+        <img src="{{postMediaURL}}" (click)="launch()">
+      </div>
+    </div>
+
+    <!-- Adding END -->
 
 
 
@@ -37,7 +50,9 @@
                     <li><button type="button" ion-button clear (click)="setLike(comment.storyID, comment.id)"> {{comment.actions.supportCount}} Like</button>
 
 
-                      <li><div class="text-botom"><a href="#">{{comment.timestamp | date:'medium'}}</a></div></li>
+                      <li>
+                        <div class="text-botom"><a href="#">{{comment.timestamp | date:'medium'}}</a></div>
+                      </li>
                   </ul>
                 </div>
               </div>

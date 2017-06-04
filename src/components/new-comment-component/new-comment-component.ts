@@ -60,6 +60,7 @@ export class NewCommentComponent implements OnInit {
   private graphTitle: string = "";
   private graphImage: string = "";
   private graphVideo: string = "";
+  private graphExternalURL: string = "";
 
 
   constructor(private _fb: FormBuilder,
@@ -124,12 +125,12 @@ export class NewCommentComponent implements OnInit {
               this.graphDescription = sub.hybridGraph.description;
               this.graphTitle = sub.hybridGraph.title;
               this.graphImage = sub.hybridGraph.image;
-              this.graphVideo = sub.hybridGraph.url;
+              //this.graphVideo = sub.hybridGraph.url;
               this.graphFound = true;
+              this.graphExternalURL = sub.hybridGraph.url;
 
               this.postText = this.graphTitle;
               this.mediaType = "Image";
-
             }
           });
         }
@@ -145,7 +146,7 @@ export class NewCommentComponent implements OnInit {
         extImageURL = this.graphImage;
       }
 
-      this._storyService.SavePost(this.user.id, this.postText, this.mediaType, this.mediaName, this.optionsModel, extImageURL).subscribe(sub => {
+      this._storyService.SavePost(this.user.id, this.postText, this.mediaType, this.mediaName, this.optionsModel, extImageURL, this.graphExternalURL).subscribe(sub => {
         let id = sub;
         this.isUploadingImage = false;
         this.uploaded = false;

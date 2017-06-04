@@ -10,5 +10,6 @@ export interface UserPost {
     userID:number;
     userFullName:string;
     postDate:string;
-    userProfileImage:string
+    userProfileImage:string;
+    storyExternalURL:string;
 }
