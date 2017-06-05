@@ -1,6 +1,17 @@
 /*================================
       User Comment Component
 ================================*/
+#header li
+{
+  display: inline-block;
+  list-style-type: none;
+  padding-right: 20px;  
+}
+
+ion-title{
+  
+  
+}
 
 
 .message-text{

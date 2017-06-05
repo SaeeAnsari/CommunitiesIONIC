@@ -1,12 +1,23 @@
 <ion-header>
+    <ion-navbar >
+    <ul id="header">
+      <li>
+        <button ion-button (click)="closeModal()" icon-left>
+          <ion-icon name="return-left"></ion-icon>Back
+        </button>
+      </li>
+      <li>
+        <ion-title>New Comments</ion-title>
+      </li>
+    </ul>
 
-  <ion-navbar>
-    <button ion-button (click)="closeModal()" icon-left>
-      <ion-icon name="return-left"></ion-icon>Back
-      </button>
-    <ion-title>New Comment</ion-title>
+
   </ion-navbar>
 </ion-header>
+
+
+
+
 <ion-content padding>
 
   <section id="feed_post">

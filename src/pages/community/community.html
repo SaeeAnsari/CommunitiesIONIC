@@ -18,11 +18,11 @@
   <form [formGroup]="communityForm" novalidate (ngSubmit)="saveCommunity(communityForm.value, communityForm.valid)">
     <ion-list>
       <ion-item>
-        <ion-label color="primary" stacked><i class="fa fa-users"></i>&nbsp;Name your Community</ion-label>
+        <ion-label  stacked><i class="fa fa-users"></i>&nbsp;Name your Community</ion-label>
         <ion-input type="email" placeholder="Email Input" placeholder="Name of you Community?" formControlName="name"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label color="primary" stacked><i class="fa fa-file-text-o"></i>&nbsp; Describe your Community</ion-label>
+        <ion-label  stacked><i class="fa fa-file-text-o"></i>&nbsp; Describe your Community</ion-label>
         <ion-input type="email" placeholder="Email Input" placeholder="What's it about?" formControlName="description"></ion-input>
       </ion-item>
       <ion-item>

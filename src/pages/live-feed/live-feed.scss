@@ -26,6 +26,16 @@ body{
 			Header
 ================================*/
 
+#left{
+    
+    float:left;
+}
+#right{
+    
+    float: right;
+    padding-right: 40px;
+    cursor: pointer; cursor: hand;
+}
 
 
 
@@ -54,13 +64,7 @@ header .container {
 
 
 .live-feed-AddIconRight{
-    float:right;
-    right: 15px;
-    top: 43px;
-    transition: all 0.5s ease 0s;
-    border: 2px solid;
-    border-radius: 5px;
-    padding:2px;
+   float:right;
 
 }
 
