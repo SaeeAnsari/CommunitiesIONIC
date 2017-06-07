@@ -16,8 +16,8 @@ import {LiveFeed} from '../pages/live-feed/live-feed';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  //rootPage:any = Login;
-  rootPage: any = TabsPage;//LiveFeed;//MyCommunitiesPage;//UserSearchComponent;
+  rootPage:any = Login;
+  //rootPage: any = TabsPage;//LiveFeed;//MyCommunitiesPage;//UserSearchComponent;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {

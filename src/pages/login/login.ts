@@ -37,26 +37,6 @@ export class Login {
   ) {
   }
 
-  /*
-    login() {
-      try {
-
-        let x = 0;
-  
-  
-        var loginDetails = this.facebook.login().then(result => {
-           alert(result);        
-        });
-       
-      }
-      catch (e) {
-        console.log(e);
-        alert(e);
-      }
-    }
-  */
-
-
   facebookLogin() {
 
     this.auth.login('facebook').then(e => {

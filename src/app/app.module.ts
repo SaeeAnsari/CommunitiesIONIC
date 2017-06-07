@@ -21,6 +21,9 @@ import { CommunityPage } from '../pages/community/community';
 import { LiveFeed } from '../pages/live-feed/live-feed';
 import { MyCommunitiesPage } from '../pages/my-communities/my-communities';
 
+import {SettingsPage} from '../pages/settings/settings';
+
+
 import { MarkerNewPostComponent } from '../components/marker-new-post-component/marker-new-post-component';
 import { UserCommentsComponent } from '../components/user-comments-component/user-comments-component';
 import { UserPostActionComponent } from '../components/user-post-action-component/user-post-action-component';
@@ -79,7 +82,8 @@ const cloudSettings: CloudSettings = {
     RegisterUserComponent,
     UserLocation,
     MyCommunitiesPage,
-    CommunityItemComponent
+    CommunityItemComponent,
+    SettingsPage
   ],
   imports: [
     BrowserModule,
@@ -104,7 +108,8 @@ const cloudSettings: CloudSettings = {
     RegisterUserComponent,
     UserLocation,
     MyCommunitiesPage,
-    CommunityItemComponent
+    CommunityItemComponent,
+    SettingsPage
   ],
   providers: [
     StatusBar,

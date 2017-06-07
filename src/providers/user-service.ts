@@ -25,8 +25,11 @@ import 'rxjs/add/operator/switchMap';
 export class UserService {
 
   public getLoggedinInUser() {
-    return this._http.get(this._url + '/1')
-      .map(ret => ret.json());
+
+    
+    let _id = +sessionStorage.getItem('userID');
+    return this.GetUser(_id);
+
   }
   public GetUser(id: number) {
     return this._http.get(this._url + '/' + id)
@@ -152,9 +155,9 @@ export class UserService {
   }
 
 
-  public SaveUserLocation(userId: number, lattitude, longitude){
+  public SaveUserLocation(userId: number, lattitude, longitude) {
 
-     var headers = new Headers();
+    var headers = new Headers();
     headers.append('Content-Type', 'application/json');
 
     let data = {
@@ -170,5 +173,20 @@ export class UserService {
     )
       .map(res => res.json())
       .catch(this.handleError)
+  }
+
+  public LoginUser(email: string, password: string): Observable<any> {
+
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+    return this._http.post(
+      this._url + '/LoginUser?username=' + email + '&password=' + password,
+      null,
+      { headers: this.headers }
+    )
+      .map(res => res.json())
+      .catch(this.handleError)
+
   }
 }

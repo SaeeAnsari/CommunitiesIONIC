@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { ViewController, NavParams, NavController } from 'ionic-angular';
+import {UserService} from '../../providers/user-service';
+
+import {TabsPage} from '../../pages/tabs/tabs';
 
 /**
  * Generated class for the LoginComponent component.
@@ -9,13 +12,19 @@ import { ViewController, NavParams, NavController } from 'ionic-angular';
  */
 @Component({
   selector: 'login-component',
-  templateUrl: 'login-component.html'
+  templateUrl: 'login-component.html',
+  providers: [UserService]
 })
 export class LoginComponent {
 
   text: string;
 
-  constructor(public nav: NavController,
+  private email: string;
+  private password: string;
+
+  constructor(
+    private _user: UserService,
+    public nav: NavController,
     public vc: ViewController,
     public navParams: NavParams) {
 
@@ -33,4 +42,15 @@ export class LoginComponent {
 
     this.vc.dismiss(data);
   }
+
+  loginUser(){
+    this._user.LoginUser(this.email, this.password).subscribe(sub=>{
+      if(sub> 0){
+        sessionStorage.setItem("userID", sub);
+        this.nav.push(TabsPage);
+      }
+    })
+  }
+
+
 }
