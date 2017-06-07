@@ -1,5 +1,5 @@
 <ion-header>
-    <ion-navbar >
+  <ion-navbar>
     <ul id="header">
       <li>
         <button ion-button (click)="closeModal()" icon-left>
@@ -39,38 +39,38 @@
 
         </div>
 
-        <div class="post-body">
-
-
-
-          <textarea [ngClass]="{textAreaSmall: graphFound == true}" rows="3" placeholder="Whats on your mind?" [(ngModel)]="postText"
-            [formControl]="PostTextControl">
-            </textarea>
-
-          <div *ngIf="graphFound == true">
-            <div class="newMedia">
-              <img class="d-flex mr-3" src="{{graphImage}}" alt="Generic placeholder image">
-            </div>
-          </div>
-
-        </div>
-
         <div class="form-group">
           <div *ngIf="graphFound == false">
-            <div class="fileUpload btn btn-primary" *ngIf="!videoSelected">
-              <span><i class="fa fa-camera fa-2x" aria-hidden="true"></i></span>
-              <input type="file" class="upload" (change)="imageFileChange($event)" />
-            </div>
 
 
-            <div class="fileUpload btn btn-primary" *ngIf="!imageSelected">
-              <span><i class="fa fa-video-camera fa-2x" aria-hidden="true"></i></span>
+            <div class="fileUpload btn btn-outline-success" *ngIf="!imageSelected">
+              <span><i class="fa fa-video-camera fa-4x" aria-hidden="true"></i><i  class="fa fa-heart fa-3x user-right" aria-hidden="true"></i></span>
               <input type="file" class="upload" (change)="videoFileChange($event)" />
             </div>
+
+
+            <div class="fileUpload btn btn-outline-info" *ngIf="!videoSelected">
+              <span><i class="fa fa-camera fa-3x float-left" aria-hidden="true"></i><i  class="fa fa-user fa-2x user-right" aria-hidden="true"></i></span>
+              <input type="file" class="upload" (change)="imageFileChange($event)" />
+            </div>
           </div>
-          <div class="fileUpload submitButton  pull-right"><button type="submit" class="btn btn-primary" [disabled]="isUploadingImage" (click)="post()">Go <i class="fa fa-check fa-2x" aria-hidden="true"></i></button></div>
+
+          <div class="post-body">
+            <textarea [ngClass]="{textAreaSmall: graphFound == true}" rows="3" placeholder="Whats on your mind?" [(ngModel)]="postText"
+              [formControl]="PostTextControl">
+            </textarea>
+
+            <div *ngIf="graphFound == true">
+              <div class="newMedia">
+                <img class="d-flex mr-3" src="{{graphImage}}" alt="Generic placeholder image">
+              </div>
+            </div>
+          </div>
+
+          <div class="fileUpload  pull-right"><button type="submit" class="btn btn-success Go-Button-New-Comp" [disabled]="isUploadingImage" (click)="post()">Go <i class="fa fa-check fa-2x" aria-hidden="true"></i></button></div>
         </div>
         <div *ngIf="uploaded">Uploaded! ready to save</div>
+
       </div>
     </div>
   </section>

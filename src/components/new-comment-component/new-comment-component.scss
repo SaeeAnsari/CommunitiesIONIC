@@ -52,8 +52,14 @@
 .fileUpload {
     position: relative;
     overflow: hidden;
+    border-radius: 10px;
+     display: inline-flex;
+    align-items: center;
    
-    margin-top: 10px;
+    margin: 10px auto;
+    padding-left: 30px;
+    width: 30%;
+    height: 80px;
 
 }
 .fileUpload input.upload {
@@ -66,6 +72,8 @@
     cursor: pointer;
     opacity: 0;
     filter: alpha(opacity=0);     
+     width: 30%;
+    height: 80px;
 }
 
 /* -=-=-=-= OverLay -=-===-=*/
@@ -104,12 +112,25 @@
     z-index:1;
     }
 
-    .submitButton{
-        font-size: 20px;
-    }
+    
 
     .loader-text {
         color: #FFF;
         font-size: 18px;
     z-index: 1;
     }
+
+    .user-right{
+        padding: 5px 0 0 10px;
+    }
+
+    .heart-red{
+
+        color:red;
+    }
+
+    .Go-Button-New-Comp{
+        font-size: 12pt;
+        
+    }
+    
