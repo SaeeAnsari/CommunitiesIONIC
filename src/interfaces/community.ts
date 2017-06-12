@@ -8,4 +8,8 @@ export interface Community {
     typeName: string;
     ownerID: number;
     ownerName: string;
+    location: {
+        lat: number;
+        lng: number;
+    }
 }

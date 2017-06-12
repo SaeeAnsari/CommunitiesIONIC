@@ -8,8 +8,12 @@ import { Observable } from 'rxjs/Rx';
 import { CommunityService } from '../../providers/community-service';
 import { MediaPostService } from '../../providers/media-post-service';
 import { UserService } from '../../providers/user-service';
+import { GeoProviderServiceProvider } from '../../providers/geo-provider-service/geo-provider-service';
 
-import {UserSearchComponent} from '../user-search-component/user-search-component';
+import { Geolocation } from '@ionic-native/geolocation';
+
+
+import { UserSearchComponent } from '../user-search-component/user-search-component';
 
 
 /**
@@ -22,7 +26,7 @@ import {UserSearchComponent} from '../user-search-component/user-search-componen
 @Component({
   selector: 'page-community',
   templateUrl: 'community.html',
-  providers: [CommunityService, MediaPostService, UserService]
+  providers: [CommunityService, MediaPostService, UserService, GeoProviderServiceProvider]
 })
 export class CommunityPage implements OnInit {
 
@@ -36,19 +40,29 @@ export class CommunityPage implements OnInit {
   private communityImage: string = '';
   private uploadMessage: string = '';
   private uploaded: boolean = false;
+  private location;
 
 
-  constructor(private _fb: FormBuilder, public navCtrl: NavController, public navParams: NavParams,
-    private _communityService: CommunityService, private _mediaPost: MediaPostService, private _userService: UserService) {
+  constructor(
+    private _fb: FormBuilder,
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private _communityService: CommunityService,
+    private _mediaPost: MediaPostService,
+    private _userService: UserService,
+    private _geoService: GeoProviderServiceProvider,
+    private _geolocation: Geolocation
+  ) {
   }
 
   ngOnInit() {
     this.communityForm = this._fb.group({
       name: ['', [<any>Validators.required, <any>Validators.minLength(5)]],
-      description: ['']
+      description: [''],
+      zip_postal: ['', [<any>Validators.required, <any>Validators.minLength(7)]]
     });
 
-    if(this.navParams.get('communityID')){
+    if (this.navParams.get('communityID')) {
       this.id = +this.navParams.get("communityID");
       this.loadCommunity();
     }
@@ -60,6 +74,7 @@ export class CommunityPage implements OnInit {
       model.id = this.id;
     }
 
+
     if (this.communityImage != undefined && this.communityImage.length > 0) {
       model.imageURL = this.communityImage;
     }
@@ -67,13 +82,42 @@ export class CommunityPage implements OnInit {
     this._userService.getLoggedinInUser().subscribe(s => {
       let userID = s.ID;
 
-      this._communityService.SaveCommunity(model, userID)
-        .subscribe(sub => {
-          this.id = sub;
+      model.location = null;
 
-          this.navCtrl.push(UserSearchComponent, {communityID: this.id});
-        })
+      if (this.location != null) {
+        model.location = this.location;
+        this.SaveCommunityFinal(model, userID)
+      }
+
+      else if (model.zip_postal.length > 2) {
+        this._geoService.GetLatLongDetails(model.zip_postal).subscribe(sub => {
+
+
+          if (sub.results.length > 0) {
+            this.location = { lat: sub.results[0].geometry.location.lat, lng: sub.results[0].geometry.location.lng };
+            model.location = this.location;
+          }
+          else if (this.location != null) {
+            model.location = this.location;
+          }
+
+          this.SaveCommunityFinal(model, userID)
+
+        });
+      }
+      else{
+        this.SaveCommunityFinal(model, userID)
+      }
     });
+  }
+
+  SaveCommunityFinal(model, userID) {
+    this._communityService.SaveCommunity(model, userID)
+      .subscribe(sub => {
+        this.id = sub;
+
+        this.navCtrl.push(UserSearchComponent, { communityID: this.id });
+      })
   }
 
   fileChange(event) {
@@ -109,6 +153,16 @@ export class CommunityPage implements OnInit {
     else {
       this.uploadMessage = "Gotta have a Picture!"
     }
+  }
+
+  locateMe() {
+    this._geolocation.getCurrentPosition().then((resp) => {
+
+      this.location = { lat: resp.coords.latitude, lng: resp.coords.longitude };
+
+    }).catch((error) => {
+      console.log('Error getting location', error);
+    });
   }
 
 

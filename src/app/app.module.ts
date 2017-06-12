@@ -44,6 +44,8 @@ import { UserLocation } from '../pages/user-location/user-location';
 import { Login } from '../pages/login/login';
 import { CommunityItemComponent } from '../components/community-item/community-item';
 import { OpenGraphServiceProvider } from '../providers/open-graph-service/open-graph-service';
+import { GeoProviderServiceProvider } from '../providers/geo-provider-service/geo-provider-service';
+import { BaseLinkProvider } from '../providers/base-link/base-link';
 
 
 
@@ -116,7 +118,9 @@ const cloudSettings: CloudSettings = {
     SplashScreen,
     Geolocation,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    OpenGraphServiceProvider
+    OpenGraphServiceProvider,
+    GeoProviderServiceProvider,
+    BaseLinkProvider
   ]
 })
 export class AppModule { }

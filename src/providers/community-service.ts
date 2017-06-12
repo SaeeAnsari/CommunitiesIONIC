@@ -71,16 +71,26 @@ export class CommunityService {
 
     let id: number;
 
-    return this._http.post(
-      this._url,
-      JSON.stringify({
+    let data = {
         Name: community.name,
         Description: community.description,
         ImageURL: this._imageUploadURL + '/MediaUpload/Community/Thumb' + community.imageURL,
         OwnerID: userID,
         Type: 2,
-        ID: community.id
-      }),
+        ID: community.id,
+        Location: null
+      };
+
+      if(community.location != null){
+        data.Location= {
+          Lattitude: community.location.lat,
+          Logitude: community.location.lng
+        };
+      }
+
+    return this._http.post(
+      this._url,
+      JSON.stringify(data),
       { headers: this.headers }
     ).map(res => res.json())
       .catch(this.handleError)
