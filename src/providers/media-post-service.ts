@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 
+
+import {BaseLinkProvider} from '../providers/base-link/base-link';
+
 import { Http, Response, Headers, RequestOptions, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 // Observable class extensions
@@ -28,7 +31,7 @@ export class MediaPostService {
 
   constructor(private _http: Http) { }
 
-  private _url = 'http://localhost:49520/api/ImageUpload';
+  private _url = BaseLinkProvider.GetBaseUrl() + '/ImageUpload';
 
   postImage(formData, type:string): Observable<any> {
     let headers = new Headers()

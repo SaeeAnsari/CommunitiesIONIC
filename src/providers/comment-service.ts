@@ -3,6 +3,9 @@ import { Injectable } from '@angular/core';
 import { StoryComment } from '../interfaces/story-comment';
 
 
+import {BaseLinkProvider} from '../providers/base-link/base-link';
+
+
 import { Http, Response, Headers, RequestOptions, URLSearchParams } from '@angular/http';
 
 import { Observable } from 'rxjs/Observable';
@@ -43,7 +46,7 @@ export class CommentService {
     this.options = new RequestOptions({ headers: this.headers });
   }
 
-  private _url = 'http://localhost:49520/api/Comment';
+  private _url = BaseLinkProvider.GetBaseUrl() + '/Comment';
 
   public GetStoryComments(storyID: number) {
     return this._http.get(this._url + '?storyID=' + storyID)

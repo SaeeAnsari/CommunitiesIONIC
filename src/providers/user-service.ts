@@ -1,6 +1,11 @@
 import { Injectable } from '@angular/core';
 import { User } from '../interfaces/user';
 import { Http, Response, Headers, RequestOptions, URLSearchParams } from '@angular/http';
+
+
+import {BaseLinkProvider} from '../providers/base-link/base-link';
+
+
 import { Observable } from 'rxjs/Observable';
 // Observable class extensions
 import 'rxjs/add/observable/of';
@@ -37,8 +42,8 @@ export class UserService {
   }
 
   private isUploadingImage = false;
-  private _url = 'http://localhost:49520/api/User';
-  private _imageUploadURL = 'http://localhost:49520';
+  private _url = BaseLinkProvider.GetBaseUrl() + '/User';
+  private _imageUploadURL = BaseLinkProvider.GetMediaURL();;
   private _users: User[] = [];
   headers: Headers;
 

@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions, URLSearchParams } from '@angular/http';
 
 
+import {BaseLinkProvider} from '../providers/base-link/base-link';
+
+
 
 import { UserPost } from '../interfaces/user-post';
 import { Story } from '../interfaces/story';
@@ -32,8 +35,8 @@ import 'rxjs/add/operator/switchMap';
 @Injectable()
 export class StoryService {
 
-  private _url = 'http://localhost:49520/api/Story';
-  private _uploadURL = 'http://localhost:49520';
+  private _url = BaseLinkProvider.GetBaseUrl()+ '/Story';
+  private _uploadURL = BaseLinkProvider.GetMediaURL();
   headers: Headers;
 
   constructor(private _http: Http) {

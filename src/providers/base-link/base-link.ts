@@ -17,7 +17,10 @@ export class BaseLinkProvider {
   }
 
   static GetBaseUrl() {
-    return 'http://localhost:49520/api/Community';
+    return 'http://localhost:49520/api';
   }
 
+  static GetMediaURL(){
+    return 'http://localhost:49520';  
+  }
 }

@@ -3,6 +3,9 @@ import { Community } from '../interfaces/community';
 
 import { Http, Response, Headers, RequestOptions, URLSearchParams } from '@angular/http';
 
+import {BaseLinkProvider} from '../providers/base-link/base-link';
+
+
 import { Observable } from 'rxjs/Observable';
 // Observable class extensions
 import 'rxjs/add/observable/of';
@@ -28,9 +31,9 @@ export class CommunityService {
 
  
 
-  private _baseURL = 'http://localhost:49520/api';
-  private _url = 'http://localhost:49520/api/Community';
-  private _imageUploadURL = 'http://localhost:49520';
+  private _baseURL = BaseLinkProvider.GetBaseUrl();
+  private _url = this._baseURL + '/Community';
+  private _imageUploadURL = BaseLinkProvider.GetMediaURL();
 
   private _communities: Community[] = [];
   headers: Headers;
