@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { ViewController, NavParams, NavController } from 'ionic-angular';
-import {UserService} from '../../providers/user-service';
+import { UserService } from '../../providers/user-service';
 
-import {TabsPage} from '../../pages/tabs/tabs';
+import { TabsPage } from '../../pages/tabs/tabs';
 
 /**
  * Generated class for the LoginComponent component.
@@ -35,21 +35,26 @@ export class LoginComponent {
     this.vc.dismiss();
   }
 
-  registerClicked(){
+  registerClicked() {
     let data = {
-      isRegistering: true      
+      isRegistering: true
     };
 
     this.vc.dismiss(data);
   }
 
-  loginUser(){
-    this._user.LoginUser(this.email, this.password).subscribe(sub=>{
-      if(sub> 0){
-        sessionStorage.setItem("userID", sub);
-        this.nav.push(TabsPage);
-      }
-    })
+  loginUser() {
+
+
+    if (this.email.length > 0 && this.password.length > 0) {
+      this._user.LoginUser(this.email, this.password).subscribe(sub => {
+        if (sub > 0) {
+          sessionStorage.setItem("userID", sub);
+          this.nav.push(TabsPage);
+        }
+      })
+    }
+
   }
 
 

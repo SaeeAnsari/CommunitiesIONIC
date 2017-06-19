@@ -37,8 +37,10 @@ export class MediaPostService {
     let headers = new Headers()
   
     let options = new RequestOptions({ headers: headers });
+
+    console.log(this._url + '/UploadImage?type=' + type);
     
-    return this._http.post('http://localhost:49520/api/ImageUpload/UploadImage?type=' + type, formData, options)
+    return this._http.post(this._url + '/UploadImage?type=' + type, formData, options)
       .map(res => res.json())
       .catch(error => Observable.throw(error))
   }
@@ -48,7 +50,7 @@ export class MediaPostService {
     
     let options = new RequestOptions({ headers: headers });
     
-    return this._http.post('http://localhost:49520/api/VideoUpload/UploadVideo', formData, options)
+    return this._http.post(this._url + '/VideoUpload/UploadVideo', formData, options)
       .map(res => res.json())
       .catch(error => Observable.throw(error))
   }

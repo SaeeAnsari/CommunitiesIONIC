@@ -46,6 +46,7 @@ import { CommunityItemComponent } from '../components/community-item/community-i
 import { OpenGraphServiceProvider } from '../providers/open-graph-service/open-graph-service';
 import { GeoProviderServiceProvider } from '../providers/geo-provider-service/geo-provider-service';
 import { BaseLinkProvider } from '../providers/base-link/base-link';
+import { UploadedMediaPostComponent } from '../components/uploaded-media-post/uploaded-media-post';
 
 
 
@@ -85,7 +86,8 @@ const cloudSettings: CloudSettings = {
     UserLocation,
     MyCommunitiesPage,
     CommunityItemComponent,
-    SettingsPage
+    SettingsPage,
+    UploadedMediaPostComponent
   ],
   imports: [
     BrowserModule,

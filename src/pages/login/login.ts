@@ -75,14 +75,14 @@ export class Login {
   }
 
   ionViewDidLoad() {
-
-    this._userService.getLoggedinInUser().subscribe(s => {
-      if (s.ID > 0 && s.DefaultCommunityID > 0) {
-        let communityID = s.DefaultCommunityID;
-        this.navCtrl.push(TabsPage, { communityID: communityID });
-      }
-    });
-
+    if (+sessionStorage.getItem('userID')> 0) {
+      this._userService.getLoggedinInUser().subscribe(s => {
+        if (s.ID > 0 && s.DefaultCommunityID > 0) {
+          let communityID = s.DefaultCommunityID;
+          this.navCtrl.push(TabsPage, { communityID: communityID });
+        }
+      });
+    }
 
     console.log('ionViewDidLoad Login');
   }

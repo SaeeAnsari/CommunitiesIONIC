@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import {BaseLinkProvider} from '../../providers/base-link/base-link';
 
 import { StoryService } from '../../providers/story-service';
 
@@ -61,6 +62,8 @@ export class NewCommentComponent implements OnInit {
   private graphImage: string = "";
   private graphVideo: string = "";
   private graphExternalURL: string = "";
+
+  private uploadedMediaURL: string = "";
 
 
   constructor(private _fb: FormBuilder,
@@ -194,7 +197,7 @@ export class NewCommentComponent implements OnInit {
 
         this.mediaName = sub;
         this.mediaType = "Image";
-
+        this.uploadedMediaURL = BaseLinkProvider.GetMediaURL() + 'MediaUpload/Story/Thumb/' + sub;
       });
     }
   }
