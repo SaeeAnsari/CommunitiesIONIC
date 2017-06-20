@@ -53,7 +53,7 @@ import { UploadedMediaPostComponent } from '../components/uploaded-media-post/up
 
 const cloudSettings: CloudSettings = {
   'core': {
-    'app_id': 'd87bdde8'
+    'app_id': '70dce2c1'
   },
   'auth': {
     'facebook': {
