@@ -225,21 +225,23 @@ export class NewCommentComponent implements OnInit {
   }
 
   closeModal() {
-    /*let data = {
-      storyID: this.storyID,
-      commentsCount: this.comments.length
-    };*/
+    
     this.vc.dismiss();
   }
 
-  getSelected(val) {
-    console.log(val);
-  }
 
-  test() {
-    var c = 0;
-    c++;
+  uploadMedia(event){
+    let fileList: FileList = event.target.files;
+    if (fileList.length > 0) {
+      let file: File = fileList[0];
+      if(file.name.toLowerCase().endsWith('.avi') || file.name.toLowerCase().endsWith('.mpeg')){
+        this.videoFileChange(event);
+      }
+      else
+      {
+        this.imageFileChange(event);
+      }
+    }
   }
-
 
 }

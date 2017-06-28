@@ -27,8 +27,8 @@
       </ion-item>
       <ion-item>
 
-        <div class="fileUpload btn btn-primary">
-          <span><i class="fa fa-camera fa-3x" aria-hidden="true"></i></span>
+        <div class="fileUploadCommunity btn btn-primary">
+          <span><i class="fa fa-camera fa-2x" aria-hidden="true"></i></span>
           <input type="file" class="upload" (change)="fileChange($event)" />
         </div>
         <span>{{uploadMessage}}</span>
@@ -45,28 +45,24 @@
               <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-map-marker fa-2x" aria-hidden="true"></i></span>
               <input type="text" class="form-control" placeholder="Zip or Postal" aria-describedby="sizing-addon1" formControlName="zip_postal">
             </div>
-            <div *ngIf="location != null">
-            <span>lattitude: {{location.lat}}<br>longitude: {{location.lng}}</span>
+            <div *ngIf="location != null" class="community-location-text">
+              <span>Located </span> <i class="fa fa-thumb-tack" aria-hidden="true"></i>
             </div>
           </div>
           <div class="pull-right community-locate-me">
             <button type="button" class="btn btn-success" (click)="locateMe()"><i class="fa fa-compass fa-2x" aria-hidden="true"></i><span class="community-locate-text">Locate Me</span></button>
-            
           </div>
         </div>
-
       </ion-item>
 
       <br>
       <br>
 
-      <ion-item class="communiti_form" no-lines>
-
-        <button ion-button round type="submit">
-          <span >Next</span>
-          <i class="fa fa-arrow-circle-o-right"></i>
+      <div >
+        <button ion-button  round type="submit" color="primary">
+          <span  >Continue ></span>
         </button>
-      </ion-item>
+      </div>
 
     </ion-list>
   </form>

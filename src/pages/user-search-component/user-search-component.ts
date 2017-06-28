@@ -9,6 +9,10 @@ import { Observable } from 'rxjs/Observable';
 import { ActivatedRoute, RouterModule, Router } from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms'
 
+
+
+import {LiveFeed} from '../live-feed/live-feed';
+
 // Observable class extensions
 import 'rxjs/add/observable/of';
 import 'rxjs/add/observable/throw';
@@ -106,7 +110,6 @@ export class UserSearchComponent  implements OnInit {
   }
 
   navigateToFeed(){
-
+    this.navCtrl.push(LiveFeed);
   }
-
 }
