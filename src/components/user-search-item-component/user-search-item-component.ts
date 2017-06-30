@@ -59,7 +59,9 @@ export class UserSearchItemComponent implements OnInit{
         this.UserAction.emit();
       });
     });
-    }
+  }
+  
+  return false;
 
   }
 
@@ -73,6 +75,8 @@ export class UserSearchItemComponent implements OnInit{
         this.UserAction.emit();
       });
     });
-    }
+  }
+  
+  return false;
   }
 }

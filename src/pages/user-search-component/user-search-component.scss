@@ -105,12 +105,17 @@
 }
 
 .user-search-AddIconRight{
-    float:right;
-    padding-right: 10px;
-    top: 43px;
-    
+position: absolute;
+    right: 20px;
+    top:30%;
+
     cursor: pointer; cursor: hand;
 
+}
+
+.user-search-AddIconRight > button{
+
+    font-size: 12pt;
 }
 
 

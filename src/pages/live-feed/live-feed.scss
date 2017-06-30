@@ -63,10 +63,21 @@ header .container {
 }
 
 
+
 .live-feed-AddIconRight{
-   float:right;
+position: absolute;
+    right: 20px;
+    top:30%;
+
+    cursor: pointer; cursor: hand;
 
 }
+
+.live-feed-AddIconRight > button{
+
+    font-size: 12pt;
+}
+
 
 .nameIcon{
     padding-left: 10px;

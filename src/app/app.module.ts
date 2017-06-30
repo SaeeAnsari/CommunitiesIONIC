@@ -47,6 +47,7 @@ import { OpenGraphServiceProvider } from '../providers/open-graph-service/open-g
 import { GeoProviderServiceProvider } from '../providers/geo-provider-service/geo-provider-service';
 import { BaseLinkProvider } from '../providers/base-link/base-link';
 import { UploadedMediaPostComponent } from '../components/uploaded-media-post/uploaded-media-post';
+import { ErrorLogServiceProvider } from '../providers/error-log-service/error-log-service';
 
 
 
@@ -57,7 +58,7 @@ const cloudSettings: CloudSettings = {
   },
   'auth': {
     'facebook': {
-      'scope': []
+      'scope': ['permission1', 'permission2']
     }
   }
 }
@@ -122,7 +123,8 @@ const cloudSettings: CloudSettings = {
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     OpenGraphServiceProvider,
     GeoProviderServiceProvider,
-    BaseLinkProvider
+    BaseLinkProvider,
+    ErrorLogServiceProvider
   ]
 })
 export class AppModule { }

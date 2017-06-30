@@ -2,6 +2,7 @@
       Community Item
 ================================*/
 
+/*
 .memmber_group {
   background: #fff none repeat scroll 0 0;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.176);
@@ -39,6 +40,20 @@
     height: 20px;
     margin-right: 11px;
     width: 20px;
+}
+*/
+
+.communityList > div > img{
+    margin-right: 20px;
+}
+
+.communityListItem-buttons {
+    position: absolute;
+    right: 10px;
+}
+
+.communityListItem-buttons > div > button{
+    font-size: 11pt;
 }
 
 
